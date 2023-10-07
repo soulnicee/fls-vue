@@ -9,15 +9,101 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div> Сума на рахунку: <span>{{moneyAmount}} </span> грн. </div>
+    <div>
+      <label :style="labelColorAdd"> Зарахувати на рахунок: <input type="number" v-model="userMoneyAdd">
+      </label>
+      <button type="button" @click="addMoney">Зарахувати</button>
+    </div>
+    <div>
+      <label :style="labelColorWith"> Зняти з рахунку: <input type="number" v-model="userMoneyWithdraw">
+      </label>
+      <button type="button" @click="withdrawMoney">Зняти</button>
+      <span style="color: red; font-weight: 700;">{{errorMessage}}</span>
+    </div>
+    <div> Відсотки за обслуговування: <span> {{transactionFee}} </span> грн. </div>
+    <hr>
+    <div>Сума у доларах: <span>$</span>
+      <span>{{toDollar}}</span>
+    </div>
+    <div> Сума у євро: <span>€</span>
+      <span>{{toEuro}}</span>
+    </div>
+  </div>
   <script>
     const { createApp } = Vue
 
     createApp({
       data() {
         return {
-
+          moneyAmount: 0,
+          USDRate: 38,
+          EUrate: 41,
+          userMoneyAdd: null,
+          userMoneyWithdraw: null,
+          labelColorAdd: null,
+          labelColorWith: null,
+          errorMessage: null,
+          transactionFee: 0,
+          transactionFeeRate: 0.03
         }
+      },
+      methods: {
+        addMoney() {
+          if (!isFinite(this.userMoneyAdd) || this.userMoneyAdd < 0) {
+            this.labelColorAdd = 'color: red'
+            return
+          } else {
+            this.transactionFee = (parseFloat(this.userMoneyAdd) * this.transactionFeeRate).toFixed(2)
+            let money = parseFloat(this.userMoneyAdd) - this.transactionFee
+            this.moneyAmount += parseFloat(money.toFixed(2))
+            this.labelColorAdd = 'color: green'
+            this.userMoneyAdd = ''
+          }
+          setTimeout(() => {
+            this.labelColorAdd = 'color: black'
+          }, 3000);
+        },
+        withdrawMoney() {
+          this.transactionFee = Math.floor(parseInt(this.userMoneyWithdraw) * this.transactionFeeRate)
+          let moneyWithFee = parseInt(this.userMoneyWithdraw) + this.transactionFee
+          if (!isFinite(this.userMoneyWithdraw) || this.userMoneyWithdraw < 0) {
+            this.labelColorWith = 'color: red'
+            return
+          }
+          if (this.moneyAmount > 0 && this.moneyAmount > moneyWithFee) {
+            this.moneyAmount -= parseFloat(this.userMoneyWithdraw)
+            this.labelColorWith = 'color: red'
+            this.userMoneyWithdraw = ''
+          } else {
+            this.errorMessage = `Недостатньо коштів на рахунку. Сума не повина перевищувати ${this.moneyAmount} грн.`
+            setTimeout(() => {
+              this.errorMessage = ''
+            }, 6000);
+          }
+          setTimeout(() => {
+            this.labelColorWith = 'color: black'
+          }, 3000);
+        },
+      },
+      computed: {
+        toDollar() {
+          if (this.moneyAmount === 0) {
+            return 0
+          }
+          if (this.moneyAmount > 0) {
+            return (this.moneyAmount / this.USDRate).toFixed(2)
+          }
+        },
+        toEuro() {
+          if (this.moneyAmount === 0) {
+            return 0
+          }
+          if (this.moneyAmount > 0) {
+            return (this.moneyAmount / this.EUrate).toFixed(2)
+          }
+        },
       },
     }).mount('#app')
   </script>
