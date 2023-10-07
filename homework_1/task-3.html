@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 1 - Task 2</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="range">
+      <label>Введіть початок діапазону <input type="text" v-model="startRange">
+      </label>
+      <label>Введіть кінець діапазону <input type="text" v-model="finishRange">
+      </label>
+    </div>
+    <div class="digit">
+      <span>Цифра: {{valueInRange}}</span>
+    </div>
+    <button type="button" @click="getRandomValueInRange">Генеруй!</button>
+  </div>
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          startRange: null,
+          finishRange: null,
+          valueInRange: null
+        }
+      },
+      methods: {
+        getRandomValueInRange() {
+          let min = parseInt(this.startRange)
+          let max = parseInt(this.finishRange)
+          this.valueInRange = Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

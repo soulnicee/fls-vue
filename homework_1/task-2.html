@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 1 - Task 2</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="month">
+      <label> Номер місяця <input type="number" placeholder="Введіть номер місяця" class="month__input" v-model="monthNumber" @input="getSeason()">
+      </label>
+    </div>
+    <div class="season">
+      <h1>{{year.season}}</h1>
+      <h2>{{year.clothes}}</h2>
+    </div>
+    <div class="seson__image">
+      <img :src="year.path" style="width: 1000px; height: 700px;">
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          monthNumber: null,
+          year: {
+            season: 'Введіть номер місяця',
+            clothes: "Що вдягнути?",
+            path: 'img/default.jpg'
+          }
+
+        }
+      },
+      methods: {
+        getSeason() {
+          switch (this.monthNumber) {
+            case 1:
+            case 2:
+            case 12:
+              return this.year = {
+                season: 'Зараз зима',
+                clothes: 'Пальто',
+                path: 'img/winter.jpg'
+              }
+            case 3:
+            case 4:
+            case 5:
+              return this.year = {
+                season: 'Зараз весна',
+                clothes: "Кофта",
+                path: 'img/spring.jpg'
+              }
+            case 6:
+            case 7:
+            case 8:
+              return this.year = {
+                season: 'Зараз літо',
+                clothes: "Шорти",
+                path: 'img/summer.jpg'
+              }
+            case 9:
+            case 10:
+            case 11:
+              return this.year = {
+                season: 'Зараз осінь',
+                clothes: "Куртка",
+                path: 'img/fall.jpg'
+              }
+            default:
+              return this.year = {
+                season: 'Введіть номер місяця',
+                clothes: "Що вдягнути?",
+                path: 'img/default.jpg'
+              }
+          }
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
