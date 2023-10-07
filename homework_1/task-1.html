@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <title>Lesson 1 - Task 1</title>
 </head>
+
 <body>
   <div id="app">
     <div class="passengers">
-      <label>
-        Kількість пасажирів
-        <input
-        type="number" 
-        placeholder="Введіть кількість пасажирів" 
-        class="passengers__input"
-        v-model="passengersAmount">
+      <label> Kількість пасажирів <input type="number" placeholder="Введіть кількість пасажирів" class="passengers__input" v-model="passengersAmount">
       </label>
     </div>
     <div class="nedded">
@@ -26,49 +22,49 @@
       </ul>
     </div>
   </div>
+  <script>
+    const { createApp } = Vue
 
-    <script>
-      const { createApp } = Vue
-
-      createApp({
-        data() {
-          return {
-            passengersAmount: null
-          }
-        },
-        computed: {
-          busCount() {
-            const bussPassengerSits = 20
-            let bussAmount
-            if (this.passengersAmount === 0 || this.passengersAmount < 0) {
-              bussAmount = 0
-              return bussAmount
-            }
-            bussAmount = Math.ceil(this.passengersAmount / bussPassengerSits)
+    createApp({
+      data() {
+        return {
+          passengersAmount: null
+        }
+      },
+      computed: {
+        busCount() {
+          const bussPassengerSits = 20
+          let bussAmount
+          if (this.passengersAmount === 0 || this.passengersAmount < 0) {
+            bussAmount = 0
             return bussAmount
-          },
-          waterCount() {
-            const waterPerPerson = 2
-            let waterAmount
-            if (this.passengersAmount === 0 || this.passengersAmount < 0) {
-              waterAmount = 0
-              return waterAmount
-            }
-            waterAmount = this.passengersAmount * waterPerPerson
+          }
+          bussAmount = Math.ceil(this.passengersAmount / bussPassengerSits)
+          return bussAmount
+        },
+        waterCount() {
+          const waterPerPerson = 2
+          let waterAmount
+          if (this.passengersAmount === 0 || this.passengersAmount < 0) {
+            waterAmount = 0
             return waterAmount
-          }, 
-          sandwichCount() {
-            const sandwichPerPerson = 3
-            let sandwichAmount
-            if (this.passengersAmount === 0 || this.passengersAmount < 0) {
-              sandwichCount = 0
-              return sandwichCount
-            }
-            sandwichCount = this.passengersAmount * sandwichPerPerson
+          }
+          waterAmount = this.passengersAmount * waterPerPerson
+          return waterAmount
+        },
+        sandwichCount() {
+          const sandwichPerPerson = 3
+          let sandwichAmount
+          if (this.passengersAmount === 0 || this.passengersAmount < 0) {
+            sandwichCount = 0
             return sandwichCount
           }
-        },
-      }).mount('#app')
-    </script>
+          sandwichCount = this.passengersAmount * sandwichPerPerson
+          return sandwichCount
+        }
+      },
+    }).mount('#app')
+  </script>
 </body>
+
 </html>

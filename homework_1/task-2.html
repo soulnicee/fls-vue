@@ -15,7 +15,7 @@
       </label>
     </div>
     <div class="season">
-      <h1>{{year.season}}</h1>
+      <h1>{{year.name}}</h1>
       <h2>{{year.clothes}}</h2>
     </div>
     <div class="seson__image">
@@ -30,7 +30,7 @@
         return {
           monthNumber: null,
           year: {
-            season: 'Введіть номер місяця',
+            name: 'Введіть номер місяця',
             clothes: "Що вдягнути?",
             path: 'img/default.jpg'
           }
@@ -39,45 +39,22 @@
       },
       methods: {
         getSeason() {
-          switch (this.monthNumber) {
-            case 1:
-            case 2:
-            case 12:
-              return this.year = {
-                season: 'Зараз зима',
-                clothes: 'Пальто',
-                path: 'img/winter.jpg'
-              }
-            case 3:
-            case 4:
-            case 5:
-              return this.year = {
-                season: 'Зараз весна',
-                clothes: "Кофта",
-                path: 'img/spring.jpg'
-              }
-            case 6:
-            case 7:
-            case 8:
-              return this.year = {
-                season: 'Зараз літо',
-                clothes: "Шорти",
-                path: 'img/summer.jpg'
-              }
-            case 9:
-            case 10:
-            case 11:
-              return this.year = {
-                season: 'Зараз осінь',
-                clothes: "Куртка",
-                path: 'img/fall.jpg'
-              }
-            default:
-              return this.year = {
-                season: 'Введіть номер місяця',
-                clothes: "Що вдягнути?",
-                path: 'img/default.jpg'
-              }
+          const seasons = [
+            { months: [1, 2, 12], name: 'Зараз зима', clothes: 'Пальто', path: 'img/winter.jpg' },
+            { months: [3, 4, 5], name: 'Зараз весна', clothes: 'Кофта', path: 'img/spring.jpg' },
+            { months: [6, 7, 8], name: 'Зараз літо', clothes: 'Шорти', path: 'img/summer.jpg' },
+            { months: [9, 10, 11], name: 'Зараз осінь', clothes: 'Куртка', path: 'img/fall.jpg' }
+          ];
+          for (const season of seasons) {
+            if (season.months.includes(this.monthNumber)) {
+              this.year = season
+              return
+            }
+            this.year = {
+              name: 'Введіть номер місяця',
+              clothes: "Що вдягнути?",
+              path: 'img/default.jpg'
+            }
           }
         }
       },
