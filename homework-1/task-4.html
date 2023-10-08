@@ -22,13 +22,13 @@
       <button type="button" @click="withdrawMoney">Зняти</button>
       <span style="color: red; font-weight: 700;">{{errorMessage}}</span>
     </div>
-    <div> Відсотки за обслуговування: <span> {{transactionFee}} </span> грн. </div>
+    <div> Комісія за обслуговування 3%: <span> {{transactionFee}} </span> грн. </div>
     <hr>
     <div>Сума у доларах: <span>$</span>
-      <span>{{toDollar}}</span>
+      <span :style="dollarColor">{{toDollar}}</span>
     </div>
     <div> Сума у євро: <span>€</span>
-      <span>{{toEuro}}</span>
+      <span :style="euroColor">{{toEuro}}</span>
     </div>
   </div>
   <script>
@@ -46,34 +46,36 @@
           labelColorWith: null,
           errorMessage: null,
           transactionFee: 0,
-          transactionFeeRate: 0.03
+          transactionFeeRate: 0.03,
         }
       },
       methods: {
+        //Додавання коштів
         addMoney() {
-          if (!isFinite(this.userMoneyAdd) || this.userMoneyAdd < 0) {
+          if (!this.isAmountValid(this.userMoneyAdd)) {
             this.labelColorAdd = 'color: red'
             return
-          } else {
-            this.transactionFee = (parseFloat(this.userMoneyAdd) * this.transactionFeeRate).toFixed(2)
-            let money = parseFloat(this.userMoneyAdd) - this.transactionFee
-            this.moneyAmount += parseFloat(money.toFixed(2))
-            this.labelColorAdd = 'color: green'
-            this.userMoneyAdd = ''
           }
+          this.transactionFee = this.calculateFee(this.userMoneyAdd, this.transactionFeeRate)
+          let moneyWithOutFee = parseInt(this.userMoneyAdd) - this.transactionFee
+          this.moneyAmount += moneyWithOutFee
+          this.labelColorAdd = 'color: green'
+          this.userMoneyAdd = ''
           setTimeout(() => {
             this.labelColorAdd = 'color: black'
           }, 3000);
         },
+        // Зняття коштів
         withdrawMoney() {
-          this.transactionFee = Math.floor(parseInt(this.userMoneyWithdraw) * this.transactionFeeRate)
-          let moneyWithFee = parseInt(this.userMoneyWithdraw) + this.transactionFee
-          if (!isFinite(this.userMoneyWithdraw) || this.userMoneyWithdraw < 0) {
+          if (!this.isAmountValid(this.userMoneyWithdraw)) {
             this.labelColorWith = 'color: red'
             return
           }
+          this.transactionFee = this.calculateFee(this.userMoneyWithdraw, this.transactionFeeRate)
+          let moneyWithFee = parseInt(this.userMoneyWithdraw) + this.transactionFee
+
           if (this.moneyAmount > 0 && this.moneyAmount > moneyWithFee) {
-            this.moneyAmount -= parseFloat(this.userMoneyWithdraw)
+            this.moneyAmount -= moneyWithFee
             this.labelColorWith = 'color: red'
             this.userMoneyWithdraw = ''
           } else {
@@ -86,24 +88,42 @@
             this.labelColorWith = 'color: black'
           }, 3000);
         },
+        // Розрахунок комісії
+        calculateFee(transactionAmount, feeRate) {
+          return Math.ceil((parseInt(transactionAmount) * feeRate))
+        },
+        // Чи коректна сума вводу
+        isAmountValid(amount) {
+          return isFinite(amount) && amount > 0
+        },
+        // Конвертація
+        currencyConverter(currencyRate) {
+          if (this.moneyAmount === 0) {
+            return 0
+          }
+          if (this.moneyAmount > 0) {
+            return (this.moneyAmount / currencyRate).toFixed(2)
+          }
+        },
+        // Зміна кольору валюти в залежності від кількості
+        changeColor(item) {
+          const amount = 100
+          return item < 100 ? 'color: red' : 'color: green'
+        }
       },
       computed: {
         toDollar() {
-          if (this.moneyAmount === 0) {
-            return 0
-          }
-          if (this.moneyAmount > 0) {
-            return (this.moneyAmount / this.USDRate).toFixed(2)
-          }
+          return this.currencyConverter(this.USDRate)
         },
         toEuro() {
-          if (this.moneyAmount === 0) {
-            return 0
-          }
-          if (this.moneyAmount > 0) {
-            return (this.moneyAmount / this.EUrate).toFixed(2)
-          }
+          return this.currencyConverter(this.EUrate)
         },
+        dollarColor() {
+          return this.changeColor(this.toDollar)
+        },
+        euroColor() {
+          return this.changeColor(this.toEuro)
+        }
       },
     }).mount('#app')
   </script>
