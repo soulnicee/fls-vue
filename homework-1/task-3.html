@@ -34,6 +34,12 @@
       },
       methods: {
         getRandomValueInRange() {
+          if (this.startRange >= this.finishRange || !this.startRange || !this.finishRange) {
+            this.valueInRange = "Введіть коректні числа"
+            this.startRange = null
+            this.finishRange = null
+            return
+          }
           this.valueInRange = this.startRange + Math.floor(Math.random() * (this.finishRange - this.startRange + 1))
         }
       },
