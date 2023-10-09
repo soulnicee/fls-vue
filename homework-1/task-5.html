@@ -58,6 +58,7 @@
       },
       methods: {
         userAutorhization() {
+          this.autorhizationResult = null
           if (!this.userLogin || !this.userPassword) {
             this.autorhizationResult = false
             this.message = 'Логін або пароль не введено!'
