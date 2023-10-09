@@ -11,7 +11,8 @@
 <body>
   <div id="app">
     <div class="passengers">
-      <label> Kількість пасажирів <input type="number" placeholder="Введіть кількість пасажирів" class="passengers__input" v-model="passengersAmount">
+      <label> Kількість пасажирів <input type="number" placeholder="Введіть кількість пасажирів" class="passengers__input" v-model="passengersAmount"
+          @input="passengersAmountValidate">
       </label>
     </div>
     <div class="nedded">
@@ -24,43 +25,31 @@
   </div>
   <script>
     const { createApp } = Vue
-
+    const busData = {
+      passengerSits: 20,
+      waterPerPerson: 2,
+      sandwichPerPerson: 3
+    }
     createApp({
       data() {
         return {
           passengersAmount: null
         }
       },
+      methods: {
+        passengersAmountValidate() {
+          if (this.passengersAmount < 0) this.passengersAmount = 0
+        }
+      },
       computed: {
         busCount() {
-          const bussPassengerSits = 20
-          let bussAmount
-          if (this.passengersAmount === 0 || this.passengersAmount < 0) {
-            bussAmount = 0
-            return bussAmount
-          }
-          bussAmount = Math.ceil(this.passengersAmount / bussPassengerSits)
-          return bussAmount
+          return Math.ceil(this.passengersAmount / busData.passengerSits)
         },
         waterCount() {
-          const waterPerPerson = 2
-          let waterAmount
-          if (this.passengersAmount === 0 || this.passengersAmount < 0) {
-            waterAmount = 0
-            return waterAmount
-          }
-          waterAmount = this.passengersAmount * waterPerPerson
-          return waterAmount
+          return this.passengersAmount * busData.waterPerPerson
         },
         sandwichCount() {
-          const sandwichPerPerson = 3
-          let sandwichAmount
-          if (this.passengersAmount === 0 || this.passengersAmount < 0) {
-            sandwichCount = 0
-            return sandwichCount
-          }
-          sandwichCount = this.passengersAmount * sandwichPerPerson
-          return sandwichCount
+          return this.passengersAmount * busData.sandwichPerPerson
         }
       },
     }).mount('#app')
