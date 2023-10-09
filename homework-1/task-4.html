@@ -33,20 +33,21 @@
   </div>
   <script>
     const { createApp } = Vue
-
+    const currencyAndFeeRate = {
+      USDRate: 38,
+      EUrate: 41,
+      transactionFeeRate: 0.03,
+    }
     createApp({
       data() {
         return {
           moneyAmount: 0,
-          USDRate: 38,
-          EUrate: 41,
           userMoneyAdd: null,
           userMoneyWithdraw: null,
           labelColorAdd: null,
           labelColorWith: null,
           errorMessage: null,
           transactionFee: 0,
-          transactionFeeRate: 0.03,
         }
       },
       methods: {
@@ -56,8 +57,8 @@
             this.labelColorAdd = 'color: red'
             return
           }
-          this.transactionFee = this.calculateFee(this.userMoneyAdd, this.transactionFeeRate)
-          let moneyWithOutFee = parseInt(this.userMoneyAdd) - this.transactionFee
+          this.transactionFee = this.calculateFee(this.userMoneyAdd, currencyAndFeeRate.transactionFeeRate)
+          let moneyWithOutFee = this.userMoneyAdd - this.transactionFee
           this.moneyAmount += moneyWithOutFee
           this.labelColorAdd = 'color: green'
           this.userMoneyAdd = ''
@@ -71,8 +72,8 @@
             this.labelColorWith = 'color: red'
             return
           }
-          this.transactionFee = this.calculateFee(this.userMoneyWithdraw, this.transactionFeeRate)
-          let moneyWithFee = parseInt(this.userMoneyWithdraw) + this.transactionFee
+          this.transactionFee = this.calculateFee(this.userMoneyWithdraw, currencyAndFeeRate.transactionFeeRate)
+          let moneyWithFee = this.userMoneyWithdraw + this.transactionFee
 
           if (this.moneyAmount > 0 && this.moneyAmount > moneyWithFee) {
             this.moneyAmount -= moneyWithFee
@@ -90,7 +91,7 @@
         },
         // Розрахунок комісії
         calculateFee(transactionAmount, feeRate) {
-          return Math.ceil((parseInt(transactionAmount) * feeRate))
+          return Math.ceil(transactionAmount * feeRate)
         },
         // Чи коректна сума вводу
         isAmountValid(amount) {
@@ -113,10 +114,10 @@
       },
       computed: {
         toDollar() {
-          return this.currencyConverter(this.USDRate)
+          return this.currencyConverter(currencyAndFeeRate.USDRate)
         },
         toEuro() {
-          return this.currencyConverter(this.EUrate)
+          return this.currencyConverter(currencyAndFeeRate.EUrate)
         },
         dollarColor() {
           return this.changeColor(this.toDollar)
