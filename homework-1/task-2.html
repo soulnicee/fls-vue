@@ -38,7 +38,7 @@
       },
       computed: {
         changeSeason() {
-          const selectedMonth = parseInt(this.monthNumber);
+          const selectedMonth = this.monthNumber;
           for (const season of seasons) {
             if (season.months.includes(selectedMonth)) {
               console.log(season);

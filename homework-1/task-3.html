@@ -11,9 +11,9 @@
 <body>
   <div id="app">
     <div class="range">
-      <label>Введіть початок діапазону <input type="text" v-model="startRange">
+      <label>Введіть початок діапазону <input type="number" v-model="startRange">
       </label>
-      <label>Введіть кінець діапазону <input type="text" v-model="finishRange">
+      <label>Введіть кінець діапазону <input type="number" v-model="finishRange">
       </label>
     </div>
     <div class="digit">
@@ -34,9 +34,7 @@
       },
       methods: {
         getRandomValueInRange() {
-          let min = parseInt(this.startRange)
-          let max = parseInt(this.finishRange)
-          this.valueInRange = Math.floor(Math.random() * (max - min + 1)) + min;
+          this.valueInRange = Math.floor(Math.random() * (this.finishRange - this.startRange + 1)) + this.startRange;
         }
       },
     }).mount('#app')
