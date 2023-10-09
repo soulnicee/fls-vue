@@ -16,7 +16,7 @@
         </label>
       </div>
       <div class="pass">
-        <label> Password <input type="text" v-model="userPassword">
+        <label> Password <input type="password" v-model="userPassword">
         </label>
       </div>
       <button type="button" class="button" @click="userAutorhization">Log in</button>
@@ -25,32 +25,31 @@
   </div>
   <script>
     const { createApp } = Vue
-
+    const userData = [
+      {
+        login: 'anaconda13',
+        password: 'zxc123'
+      },
+      {
+        login: 'kolbaska75',
+        password: 'fifa17'
+      },
+      {
+        login: 'krot',
+        password: 'temnota'
+      },
+      {
+        login: 'papajonh',
+        password: '123456'
+      },
+      {
+        login: 'karasik',
+        password: 'rybak91'
+      },
+    ]
     createApp({
       data() {
         return {
-          userData: [
-            {
-              login: 'anaconda13',
-              password: 'zxc123'
-            },
-            {
-              login: 'kolbaska75',
-              password: 'fifa17'
-            },
-            {
-              login: 'krot',
-              password: 'temnota'
-            },
-            {
-              login: 'papajonh',
-              password: '123456'
-            },
-            {
-              login: 'karasik',
-              password: 'rybak91'
-            },
-          ],
           userLogin: null,
           userPassword: null,
           autorhizationResult: null,
@@ -66,8 +65,8 @@
           }
 
           const userLog = this.userLogin.toLowerCase()
-          const userPass = this.userPassword.toLowerCase()
-          this.autorhizationResult = this.userData.some((user) => {
+          const userPass = this.userPassword
+          this.autorhizationResult = userData.some((user) => {
             return user.login === userLog && user.password === userPass
           })
           if (this.autorhizationResult) {
