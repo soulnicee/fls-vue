@@ -11,51 +11,45 @@
 <body>
   <div id="app">
     <div class="month">
-      <label> Номер місяця <input type="number" placeholder="Введіть номер місяця" class="month__input" v-model="monthNumber" @input="getSeason()">
+      <label> Номер місяця <input type="number" placeholder="Введіть номер місяця" class="month__input" v-model="monthNumber">
       </label>
     </div>
     <div class="season">
-      <h1>{{year.name}}</h1>
-      <h2>{{year.clothes}}</h2>
+      <h1>{{changeSeason.name}}</h1>
+      <h2>{{changeSeason.clothes}}</h2>
     </div>
     <div class="seson__image">
-      <img :src="year.path" style="width: 1000px; height: 700px;">
+      <img :src="changeSeason.path" style="width: 1000px; height: 700px;">
     </div>
   </div>
   <script>
     const { createApp } = Vue
-
+    const seasons = [
+      { months: [1, 2, 12], name: 'Зараз зима', clothes: 'Пальто', path: 'img/winter.jpg' },
+      { months: [3, 4, 5], name: 'Зараз весна', clothes: 'Кофта', path: 'img/spring.jpg' },
+      { months: [6, 7, 8], name: 'Зараз літо', clothes: 'Шорти', path: 'img/summer.jpg' },
+      { months: [9, 10, 11], name: 'Зараз осінь', clothes: 'Куртка', path: 'img/fall.jpg' }
+    ]
     createApp({
       data() {
         return {
           monthNumber: null,
-          year: {
+        }
+      },
+      computed: {
+        changeSeason() {
+          const selectedMonth = parseInt(this.monthNumber);
+          for (const season of seasons) {
+            if (season.months.includes(selectedMonth)) {
+              console.log(season);
+              return season;
+            }
+          }
+          return {
             name: 'Введіть номер місяця',
             clothes: "Що вдягнути?",
             path: 'img/default.jpg'
-          }
-
-        }
-      },
-      methods: {
-        getSeason() {
-          const seasons = [
-            { months: [1, 2, 12], name: 'Зараз зима', clothes: 'Пальто', path: 'img/winter.jpg' },
-            { months: [3, 4, 5], name: 'Зараз весна', clothes: 'Кофта', path: 'img/spring.jpg' },
-            { months: [6, 7, 8], name: 'Зараз літо', clothes: 'Шорти', path: 'img/summer.jpg' },
-            { months: [9, 10, 11], name: 'Зараз осінь', clothes: 'Куртка', path: 'img/fall.jpg' }
-          ];
-          for (const season of seasons) {
-            if (season.months.includes(this.monthNumber)) {
-              this.year = season
-              return
-            }
-            this.year = {
-              name: 'Введіть номер місяця',
-              clothes: "Що вдягнути?",
-              path: 'img/default.jpg'
-            }
-          }
+          };
         }
       },
     }).mount('#app')
