@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Other Task 1</title>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          userName: null
+        }
+      },
+      computed: {
+        printUserName() {
+          return this.userName
+        }
+      },
+      methods: {
+
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

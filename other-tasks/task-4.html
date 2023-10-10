@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Other Task 4</title>
+</head>
+<style>
+  .calculator {
+    width: 200px;
+  }
+
+  .number-box-1 {}
+
+  .number-box-3 {
+    display: flex;
+    gap: 25px;
+  }
+
+  .number-button {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 25px;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div class="calculator">
+      <div class="number-box-3">
+        <button type="button" data-digit="1" class="number-button">1</button>
+        <button type="button" data-digit="2" class="number-button">2</button>
+        <button type="button" data-digit="3" class="number-button">3</button>
+      </div>
+      <div class="number-box-3">
+        <button type="button" data-digit="4" class="number-button">4</button>
+        <button type="button" data-digit="5" class="number-button">5</button>
+        <button type="button" data-digit="6" class="number-button">6</button>
+      </div>
+      <div class="number-box-3">
+        <button type="button" data-digit="7" class="number-button">7</button>
+        <button type="button" data-digit="8" class="number-button">8</button>
+        <button type="button" data-digit="9" class="number-button">9</button>
+      </div>
+      <div class="number-box-1">
+        <button type="button" data-digit="0" class="number-button">0</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Other Task 2</title>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <button type="button" @click="addClick">Нажми на мене</button>
+    </div>
+    <hr>
+    <div> Ти нажав на мене <span>{{ clickCounter }}</span> разів </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          clickCounter: 0
+        }
+      },
+      methods: {
+        addClick() {
+          this.clickCounter++
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
