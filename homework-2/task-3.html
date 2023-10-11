@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 2 - Task 3</title>
+</head>
+<style>
+  .card {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 18px;
+    border: 2px solid transparent;
+  }
+
+  .card__image {
+    max-width: 300px;
+  }
+
+  .card__image img {
+    width: 100%;
+  }
+
+  .correct-answer {
+    border: 2px solid green;
+  }
+
+  .wrong-answer {
+    border: 2px solid red;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div class="card">
+      <div class="card__image">
+        <img :src="wordsList.imgPath">
+      </div>
+      <span class="english-word">{{wordsList.word}}</span>
+      <label> Ваш переклад: <input type="text" placeholder="Введіть переклад" class="user-translate" v-model="userAnswer">
+      </label>
+      <button type="button" class="check-btn" @click="checkUserAnswer">Перевірити</button>
+      <div class="checking-result">{{cardChange.text}}</div>
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+    const resultData = {
+      correct: {
+        text: 'Добре. Молодець!',
+        class: 'correct-answer'
+      },
+      wrong: {
+        text: 'Невірно, спробуйте ще раз',
+        class: 'wrong-answer'
+      }
+    }
+
+    createApp({
+      data() {
+        return {
+          wordsList: {
+            word: 'Table',
+            translate: 'стіл',
+            imgPath: `img/table.jpg`
+          },
+          userAnswer: null,
+          isCorrect: null
+        }
+      },
+      methods: {
+        checkUserAnswer() {
+          if (!this.userAnswer) {
+            return
+          }
+          let answer = this.userAnswer.toLowerCase()
+          if (this.wordsList.translate === answer) {
+            return this.isCorrect = true
+          } else this.isCorrect = false
+          return this.wordsList.translate === answer ? resultData.correct : resultData.wrong
+        }
+      },
+      computed: {
+        cardChange() {
+          if (condition) {
+
+          }
+          return this.isCorrect ? resultData.correct : resultData.wrong
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

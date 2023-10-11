@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 2 - Task 1</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="auth">
+      <div class="inputs">
+        <label>Введіть логін: <input type="text" placeholder="Введіть логін" class="auth-login-inp" v-model="userLogin">
+        </label>
+        <label>Введіть пароль: <input type="password" placeholder="Введіть пароль" class="auth-pass-inp" v-model="userPassword">
+        </label>
+      </div>
+      <div class="auth-result">
+        <img src="img/smile.webp" alt="smile" v-if="isUserLogin">
+        <div :class="errorClass" v-else>Введено не вірний логін</div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .ivan {
+      color: blue
+    }
+
+    .other {
+      color: red
+    }
+  </style>
+  <script>
+    const { createApp } = Vue
+    const usersList = [
+      {
+        login: 'Лобстер',
+        password: 'vanya1991'
+      },
+      {
+        login: 'Кейт',
+        password: 'princess2003'
+      },
+      {
+        login: 'Dog',
+        password: 'givemeboneS'
+      },
+    ]
+    createApp({
+      data() {
+        return {
+          userLogin: null,
+          userPassword: null,
+
+        }
+      },
+      methods: {
+
+      },
+      computed: {
+        isUserLogin() {
+          return usersList.some((user) => user.login === this.userLogin)
+        },
+        errorClass() {
+          return this.userLogin === 'Іван' ? 'ivan' : 'other'
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

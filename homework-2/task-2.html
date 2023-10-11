@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 2 - Task 2</title>
+</head>
+<style>
+  .services {
+    font-size: 20px;
+    color: red;
+    font-weight: 700;
+    width: 500px;
+    height: 500px;
+  }
+
+  .business {
+    background: url(img/business.jpg) no-repeat;
+  }
+
+  .economy {
+    background: url(img/cloud.jpeg) no-repeat;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div class="ticket-choose">
+      <label> Виберіть клас квитка: <select v-model="ticketClass">
+          <option value="business" selected>Бізнес</option>
+          <option value="economy">Економ</option>
+        </select>
+      </label>
+    </div>
+    <div :class="['services', ticketClassChoosen]">
+      <div v-if="isBusiness">
+        <label> Оберіть додатково: <select v-model="businessServices">
+            <option value="cognac" selected>Коньяк</option>
+            <option value="newspapper">Газета</option>
+          </select>
+        </label>
+        <div class="snack" v-if="isCognac">
+          <input type="radio" name="chooseSnack" value="snack-yes">
+          <label for="snack-yes">Так</label>
+          <input type="radio" name="chooseSnack" value="snack-no">
+          <label for="snack-no">Ні</label>
+        </div>
+      </div>
+      <div v-if="isEconomy">
+        <label> Оберіть додатково: <select>
+            <option value="beer" selected>Пиво</option>
+            <option value="chips">Чіпси</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+    createApp({
+      data() {
+        return {
+          ticketClass: null,
+          businessServices: null
+        }
+      },
+      computed: {
+        ticketClassChoosen() {
+          switch (this.ticketClass) {
+            case 'business': return 'business'
+            case 'economy': return 'economy'
+          }
+        },
+        isBusiness() {
+          return this.ticketClass === 'business'
+        },
+        isEconomy() {
+          return this.ticketClass === 'economy'
+        },
+        isCognac() {
+          return this.businessServices === 'cognac'
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 1 - Task 4</title>
+</head>
+
+<body>
+  <div id="app">
+    <div> Сума на рахунку: <span>{{moneyAmount}} </span> грн. </div>
+    <div>
+      <label :style="labelColorAdd"> Зарахувати на рахунок: <input type="number" v-model="userMoneyAdd">
+      </label>
+      <button type="button" @click="addMoney">Зарахувати</button>
+    </div>
+    <div>
+      <label :style="labelColorWith"> Зняти з рахунку: <input type="number" v-model="userMoneyWithdraw">
+      </label>
+      <button type="button" @click="withdrawMoney">Зняти</button>
+      <span style="color: red; font-weight: 700;">{{errorMessage}}</span>
+    </div>
+    <div> Комісія за обслуговування 3%: <span> {{transactionFee}} </span> грн. </div>
+    <hr>
+    <div>Сума у доларах: <span>$</span>
+      <span :style="dollarColor">{{toDollar}}</span>
+    </div>
+    <div> Сума у євро: <span>€</span>
+      <span :style="euroColor">{{toEuro}}</span>
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+    const currencyAndFeeRate = {
+      USDRate: 38,
+      EUrate: 41,
+      transactionFeeRate: 0.03,
+    }
+    createApp({
+      data() {
+        return {
+          moneyAmount: 0,
+          userMoneyAdd: null,
+          userMoneyWithdraw: null,
+          labelColorAdd: null,
+          labelColorWith: null,
+          errorMessage: null,
+          transactionFee: 0,
+        }
+      },
+      methods: {
+        //Додавання коштів
+        addMoney() {
+          if (!this.isAmountValid(this.userMoneyAdd)) {
+            this.labelColorAdd = 'color: red'
+            return
+          }
+          this.transactionFee = this.calculateFee(this.userMoneyAdd, currencyAndFeeRate.transactionFeeRate)
+          let moneyWithOutFee = this.userMoneyAdd - this.transactionFee
+          this.moneyAmount += moneyWithOutFee
+          this.labelColorAdd = 'color: green'
+          this.userMoneyAdd = ''
+          setTimeout(() => {
+            this.labelColorAdd = 'color: black'
+          }, 3000);
+        },
+        // Зняття коштів
+        withdrawMoney() {
+          if (!this.isAmountValid(this.userMoneyWithdraw)) {
+            this.labelColorWith = 'color: red'
+            return
+          }
+          this.transactionFee = this.calculateFee(this.userMoneyWithdraw, currencyAndFeeRate.transactionFeeRate)
+          let moneyWithFee = this.userMoneyWithdraw + this.transactionFee
+
+          if (this.moneyAmount > 0 && this.moneyAmount > moneyWithFee) {
+            this.moneyAmount -= moneyWithFee
+            this.labelColorWith = 'color: red'
+            this.userMoneyWithdraw = ''
+          } else {
+            this.errorMessage = `Недостатньо коштів на рахунку. Сума не повина перевищувати ${this.moneyAmount} грн.`
+            setTimeout(() => {
+              this.errorMessage = ''
+            }, 6000);
+          }
+          setTimeout(() => {
+            this.labelColorWith = 'color: black'
+          }, 3000);
+        },
+        // Розрахунок комісії
+        calculateFee(transactionAmount, feeRate) {
+          return Math.ceil(transactionAmount * feeRate)
+        },
+        // Чи коректна сума вводу
+        isAmountValid(amount) {
+          return isFinite(amount) && amount > 0
+        },
+        // Конвертація
+        currencyConverter(currencyRate) {
+          if (this.moneyAmount === 0) {
+            return 0
+          }
+          if (this.moneyAmount > 0) {
+            return (this.moneyAmount / currencyRate).toFixed(2)
+          }
+        },
+        // Зміна кольору валюти в залежності від кількості
+        changeColor(item) {
+          const amount = 100
+          return item < 100 ? 'color: red' : 'color: green'
+        }
+      },
+      computed: {
+        toDollar() {
+          return this.currencyConverter(currencyAndFeeRate.USDRate)
+        },
+        toEuro() {
+          return this.currencyConverter(currencyAndFeeRate.EUrate)
+        },
+        dollarColor() {
+          return this.changeColor(this.toDollar)
+        },
+        euroColor() {
+          return this.changeColor(this.toEuro)
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

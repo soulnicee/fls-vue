@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 1 - Task 5</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="auth">
+      <div class="login">
+        <label>Login <input type="text" v-model="userLogin">
+        </label>
+      </div>
+      <div class="pass">
+        <label> Password <input type="password" v-model="userPassword">
+        </label>
+      </div>
+      <button type="button" class="button" @click="userAutorhization">Log in</button>
+      <span :style="changeColor">{{message}}</span>
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+    const userData = [
+      {
+        login: 'anaconda13',
+        password: 'zxc123'
+      },
+      {
+        login: 'kolbaska75',
+        password: 'fifa17'
+      },
+      {
+        login: 'krot',
+        password: 'temnota'
+      },
+      {
+        login: 'papajonh',
+        password: '123456'
+      },
+      {
+        login: 'karasik',
+        password: 'rybak91'
+      },
+    ]
+    createApp({
+      data() {
+        return {
+          userLogin: null,
+          userPassword: null,
+          autorhizationResult: null,
+          message: null
+        }
+      },
+      methods: {
+        userAutorhization() {
+          this.autorhizationResult = null
+          if (!this.userLogin || !this.userPassword) {
+            this.autorhizationResult = false
+            this.message = 'Логін або пароль не введено!'
+            return
+          }
+
+          const userLog = this.userLogin.toLowerCase()
+          const userPass = this.userPassword
+          this.autorhizationResult = userData.some((user) => {
+            return user.login === userLog && user.password === userPass
+          })
+          if (this.autorhizationResult) {
+            this.message = `Вітаємо, ${userLog}! Ви успішно авторизувалися!`
+            this.userLogin = ''
+            this.userPassword = ''
+          } else {
+            this.message = 'Логін або пароль введено не вірно! Повторіть спробу.'
+          }
+        }
+      },
+      computed: {
+        changeColor() {
+          return this.autorhizationResult ? 'color: green' : 'color: red'
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

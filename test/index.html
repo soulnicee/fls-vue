@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <title>Home Work #2</title>
+</head>
+
+<body>
+  <style>
+    .message {
+      transition: all 0.3s ease 0s;
+    }
+
+    .error-default-color {
+      color: red
+    }
+
+    .error-ivan-color {
+      color: blue
+    }
+  </style>
+  <div class="wrapper">
+    <div id="task1">
+      <h2>Task 1</h2>
+      <label>Login <input type="text" v-model="userLogin" /></label><br />
+      <label>Password <input type="password" v-model="userPassword" /></label><br />
+      <button @click="handleSubmit()" type="submit" class="button">Go</button><br />
+      <div :class="['message', checkUser]">{{msg}}</div>
+      <img :src="img">
+    </div>
+  </div>
+  <br />
+  </div>
+  <script>
+    const { createApp } = Vue;
+    //Валидация логина и пароля
+    const userData = [
+      {
+        login: 'petya',
+        pass: '123456'
+      }
+    ]
+    const task1 = createApp({
+      data() {
+        return {
+          userLogin: null,
+          userPassword: null,
+          img: null,
+          auth: null,
+          msg: null
+        };
+      },
+      methods: {
+        handleSubmit() {
+          this.auth = null
+          if (!this.userLogin || !this.userPassword) {
+            this.auth = false
+            this.msg = 'Логін або пароль не введено!'
+            return
+          }
+          const reg = /^(.+)$/
+          if (this.userLogin === 'Іван' && reg.test(this.userPassword)) {
+            this.auth = 'ivan'
+            this.msg = 'Помилка. Логін або пароль введені не вірно'
+          } else {
+            this.auth = userData.some((user) => {
+              return user.login === this.userLogin && user.pass === this.userPassword
+            })
+          }
+          if (this.auth && this.auth !== 'ivan') {
+            this.img = 'task1/Screenshot_1.png'
+          } else {
+            this.msg = 'Помилка. Логін або пароль введені не вірно'
+          }
+        },
+      },
+      computed: {
+        checkUser() {
+          if (this.auth === 'ivan') {
+            return 'error-ivan-color'
+          }
+          if (!this.auth) {
+            return 'error-default-color'
+          }
+        },
+      },
+    });
+
+    task1.mount("#task1");
+
+  </script>
+</body>
+
+</html>
