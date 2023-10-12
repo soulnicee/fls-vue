@@ -7,34 +7,41 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <title>Lesson 2 - Task 1</title>
 </head>
+<style>
+  .message {
+    transition: all 0.3s ease 0s;
+  }
+
+  .error-default-color {
+    color: red
+  }
+
+  .error-ivan-color {
+    color: blue
+  }
+</style>
 
 <body>
   <div id="app">
     <div class="auth">
       <div class="inputs">
-        <label>Введіть логін: <input type="text" placeholder="Введіть логін" class="auth-login-inp" v-model="userLogin">
+        <label>Введіть логін: <input type="text" placeholder="Введіть логін" v-model="userLogin">
         </label>
-        <label>Введіть пароль: <input type="password" placeholder="Введіть пароль" class="auth-pass-inp" v-model="userPassword">
+        <label>Введіть пароль: <input type="password" placeholder="Введіть пароль" v-model="userPassword">
         </label>
       </div>
+      <div>
+        <button @click="handleSubmit()" type="submit" class="button">Авторизуватися</button>
+      </div>
       <div class="auth-result">
-        <img src="img/smile.webp" alt="smile" v-if="isUserLogin">
-        <div :class="errorClass" v-else>Введено не вірний логін</div>
+        <div :class="['message', checkUser]">{{errorMessage}}</div>
+        <img :src="imagePath">
       </div>
     </div>
   </div>
-  <style>
-    .ivan {
-      color: blue
-    }
-
-    .other {
-      color: red
-    }
-  </style>
   <script>
     const { createApp } = Vue
-    const usersList = [
+    const userData = [
       {
         login: 'Лобстер',
         password: 'vanya1991'
@@ -53,19 +60,44 @@
         return {
           userLogin: null,
           userPassword: null,
-
-        }
+          imagePath: null,
+          authorizationResult: null,
+          errorMessage: null
+        };
       },
       methods: {
-
+        handleSubmit() {
+          this.authorizationResult = null
+          if (!this.userLogin || !this.userPassword) {
+            this.authorizationResult = false
+            this.errorMessage = 'Логін або пароль не введено!'
+            return
+          }
+          const reg = /^(.+)$/
+          if (this.userLogin === 'Іван' && reg.test(this.userPassword)) {
+            this.authorizationResult = 'ivan'
+            this.errorMessage = 'Помилка. Логін або пароль введені не вірно'
+          } else {
+            this.authorizationResult = userData.some((user) => {
+              return user.login === this.userLogin && user.password === this.userPassword
+            })
+          }
+          if (this.authorizationResult && this.authorizationResult !== 'ivan') {
+            this.imagePath = 'img/smile.webp'
+          } else {
+            this.errorMessage = 'Помилка. Логін або пароль введені не вірно'
+          }
+        },
       },
       computed: {
-        isUserLogin() {
-          return usersList.some((user) => user.login === this.userLogin)
+        checkUser() {
+          if (this.authorizationResult === 'ivan') {
+            return 'error-ivan-color'
+          }
+          if (!this.authorizationResult) {
+            return 'error-default-color'
+          }
         },
-        errorClass() {
-          return this.userLogin === 'Іван' ? 'ivan' : 'other'
-        }
       },
     }).mount('#app')
   </script>
