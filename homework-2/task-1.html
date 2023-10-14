@@ -10,9 +10,6 @@
 <style>
   .message {
     transition: all 0.3s ease 0s;
-  }
-
-  .error-default-color {
     color: red
   }
 
@@ -31,10 +28,11 @@
         </label>
       </div>
       <div>
-        <button @click="handleSubmit()" type="submit" class="button">Авторизуватися</button>
+        <button @click="userAuthorization()" type="submit" class="button">Авторизуватися</button>
       </div>
       <div class="auth-result">
-        <div :class="['message', checkUser]">{{errorMessage}}</div>
+        <div class="message" :class="{
+          'error-ivan-color': isIvan}">{{errorMessage}}</div>
         <img :src="imagePath">
       </div>
     </div>
@@ -66,7 +64,7 @@
         };
       },
       methods: {
-        handleSubmit() {
+        userAuthorization() {
           this.authorizationResult = null
           if (!this.userLogin || !this.userPassword) {
             this.authorizationResult = false
@@ -83,7 +81,7 @@
             this.userLogin = null
             this.userPassword = null
           }
-          if (this.authorizationResult && this.authorizationResult !== 'ivan') {
+          if (this.authorizationResult && !this.isIvan) {
             this.imagePath = 'img/smile.webp'
           } else {
             this.errorMessage = 'Помилка. Логін або пароль введені не вірно'
@@ -91,14 +89,9 @@
         },
       },
       computed: {
-        checkUser() {
-          if (this.authorizationResult === 'ivan') {
-            return 'error-ivan-color'
-          }
-          if (!this.authorizationResult) {
-            return 'error-default-color'
-          }
-        },
+        isIvan() {
+          return this.authorizationResult === 'ivan'
+        }
       },
     }).mount('#app')
   </script>
