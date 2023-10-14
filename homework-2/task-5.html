@@ -5,84 +5,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <title>Lesson 1 - Task 5</title>
+  <title>Lesson 2 - Task 5</title>
 </head>
+<style>
+  .image {
+    width: 30px;
+  }
+
+  .link-block {
+    display: flex;
+    gap: 10px;
+  }
+
+  .block {
+    margin-bottom: 15px;
+  }
+</style>
 
 <body>
   <div id="app">
-    <div class="auth">
-      <div class="login">
-        <label>Login <input type="text" v-model="userLogin">
-        </label>
-      </div>
-      <div class="pass">
-        <label> Password <input type="password" v-model="userPassword">
-        </label>
-      </div>
-      <button type="button" class="button" @click="userAutorhization">Log in</button>
-      <span :style="changeColor">{{message}}</span>
+    <div class="block" v-for="site in sitesData" :key="site.id">
+      <a :href="site.searchedPage" class="link">
+        <div class="link-block">
+          <img :src="site.imagePreviewPath" alt="icon" class="image">
+          <div class="link-block__info">
+            <div class="link-block__title">{{site.title}}</div>
+            <div class="link-block__page">{{site.searchedPage}}</div>
+          </div>
+        </div>
+      </a>
+      <div class="link-text">{{site.linkText}}</div>
+      <div class="link-description">{{site.description}}</div>
     </div>
   </div>
   <script>
     const { createApp } = Vue
-    const userData = [
+    const data = [
       {
-        login: 'anaconda13',
-        password: 'zxc123'
+        id: 1,
+        imagePreviewPath: 'img/preview-1.svg',
+        title: 'vuejs.org',
+        searchedPage: 'https://ua.vuejs.org/api/sfc-spec.html',
+        linkText: 'Текст лінку',
+        description: 'Опис'
       },
       {
-        login: 'kolbaska75',
-        password: 'fifa17'
+        id: 2,
+        imagePreviewPath: 'img/preview-2.svg',
+        title: 'vuejs.org',
+        searchedPage: 'https://ua.vuejs.org/api/sfc-spec.html',
+        linkText: 'Текст лінку',
+        description: 'Опис'
       },
       {
-        login: 'krot',
-        password: 'temnota'
-      },
-      {
-        login: 'papajonh',
-        password: '123456'
-      },
-      {
-        login: 'karasik',
-        password: 'rybak91'
+        id: 3,
+        imagePreviewPath: 'img/preview-3.svg',
+        title: 'vuejs.org',
+        searchedPage: 'https://ua.vuejs.org/api/sfc-spec.html',
+        linkText: 'Текст лінку',
+        description: 'Опис'
       },
     ]
     createApp({
       data() {
         return {
-          userLogin: null,
-          userPassword: null,
-          autorhizationResult: null,
-          message: null
-        }
-      },
-      methods: {
-        userAutorhization() {
-          this.autorhizationResult = null
-          if (!this.userLogin || !this.userPassword) {
-            this.autorhizationResult = false
-            this.message = 'Логін або пароль не введено!'
-            return
-          }
 
-          const userLog = this.userLogin.toLowerCase()
-          const userPass = this.userPassword
-          this.autorhizationResult = userData.some((user) => {
-            return user.login === userLog && user.password === userPass
-          })
-          if (this.autorhizationResult) {
-            this.message = `Вітаємо, ${userLog}! Ви успішно авторизувалися!`
-            this.userLogin = ''
-            this.userPassword = ''
-          } else {
-            this.message = 'Логін або пароль введено не вірно! Повторіть спробу.'
-          }
         }
       },
       computed: {
-        changeColor() {
-          return this.autorhizationResult ? 'color: green' : 'color: red'
+        sitesData() {
+          return data
         }
+      },
+      methods: {
+
       },
     }).mount('#app')
   </script>
