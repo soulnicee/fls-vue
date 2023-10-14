@@ -38,60 +38,52 @@
 
 <body>
   <div id="app">
-    <div class="card">
+    <div class="card" :class="{'correct-answer': isCorrect, 'wrong-answer': !isCorrect && isCorrect !== null}">
       <div class="card__image">
-        <img :src="wordsList.imgPath">
+        <img :src="wordsData.imgPath">
       </div>
-      <span class="english-word">{{wordsList.word}}</span>
+      <span class="english-word">{{wordsData.word}}</span>
       <label> Ваш переклад: <input type="text" placeholder="Введіть переклад" class="user-translate" v-model="userAnswer">
       </label>
       <button type="button" class="check-btn" @click="checkUserAnswer">Перевірити</button>
-      <div class="checking-result">{{cardChange.text}}</div>
+      <div class="checking-result">{{message}}</div>
     </div>
   </div>
   <script>
     const { createApp } = Vue
-    const resultData = {
-      correct: {
-        text: 'Добре. Молодець!',
-        class: 'correct-answer'
-      },
-      wrong: {
-        text: 'Невірно, спробуйте ще раз',
-        class: 'wrong-answer'
-      }
+    const wordsList = {
+      word: 'Table',
+      translate: 'стіл',
+      imgPath: `img/table.jpg`
     }
 
     createApp({
       data() {
         return {
-          wordsList: {
-            word: 'Table',
-            translate: 'стіл',
-            imgPath: `img/table.jpg`
-          },
           userAnswer: null,
-          isCorrect: null
+          isCorrect: null,
+          message: null
         }
       },
       methods: {
         checkUserAnswer() {
           if (!this.userAnswer) {
+            this.message = 'Введіть переклад!'
             return
           }
           let answer = this.userAnswer.toLowerCase()
-          if (this.wordsList.translate === answer) {
-            return this.isCorrect = true
-          } else this.isCorrect = false
-          return this.wordsList.translate === answer ? resultData.correct : resultData.wrong
+          if (answer === this.wordsData.translate) {
+            this.isCorrect = true
+            this.message = 'Добре. Молодець!'
+          } else {
+            this.isCorrect = false
+            this.message = 'Невірно, спробуйте ще раз'
+          }
         }
       },
       computed: {
-        cardChange() {
-          if (condition) {
-
-          }
-          return this.isCorrect ? resultData.correct : resultData.wrong
+        wordsData() {
+          return wordsList
         }
       },
     }).mount('#app')
