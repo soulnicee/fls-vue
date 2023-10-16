@@ -39,6 +39,7 @@
   </div>
   <script>
     const { createApp } = Vue
+    const selectedUserName = 'Іван'
     const userData = [
       {
         login: 'Лобстер',
@@ -71,7 +72,7 @@
             this.errorMessage = 'Логін або пароль не введено!'
             return
           }
-          if (this.userLogin === 'Іван' && this.userPassword.match(/^(.+)$/)) {
+          if (this.userLogin === selectedUserName && this.userPassword.match(/^(.+)$/)) {
             this.authorizationResult = 'ivan'
             this.errorMessage = 'Помилка. Логін або пароль введені не вірно'
           } else {
