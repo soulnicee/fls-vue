@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 3 - Task 1</title>
+</head>
+<style>
+</style>
+
+<body>
+  <div id="app">
+    <div class="user-data">
+      <label> Введіть довжину в сантиметрах: <input type="number" v-model="userLenghtInSantimetr">
+      </label>
+    </div>
+    <div class="answer"> Довжина в метрах: <span>{{toMetres}}</span> Довжина в кілометрах: <span>{{toKilometers}}</span>
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          userLenghtInSantimetr: null
+        }
+      },
+      computed: {
+        toMetres() {
+          return (this.userLenghtInSantimetr / 100).toFixed(2)
+        },
+        toKilometers() {
+          return (this.userLenghtInSantimetr / 100000).toFixed(5)
+        }
+      },
+      methods: {
+
+      },
+
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

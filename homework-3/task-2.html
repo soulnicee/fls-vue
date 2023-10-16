@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 3 - Task 2</title>
+</head>
+<style>
+  .cold {
+    background-color: #afd2ff;
+  }
+
+  .good {
+    background-color: blue;
+  }
+
+  .middle {
+    background-color: green;
+  }
+
+  .hot {
+    background-color: red;
+  }
+
+  .temperature-indicator {
+    width: 400px;
+    height: 400px;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div>
+      <label> Введіть температуру повітря: <input type="number" v-model="userTemperature">
+      </label>
+    </div>
+    <div class="temperature-indicator" :class="{
+     [weatherClass]: userTemperature
+    }">
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+
+    createApp({
+      data() {
+        return {
+          userTemperature: null
+        }
+      },
+      computed: {
+        weatherClass() {
+          let result
+          if (this.userTemperature < 0) result = 'cold'
+          else if (this.userTemperature < 10) result = 'good'
+          else if (this.userTemperature < 22) result = 'middle'
+          else result = 'hot'
+          return result
+        }
+      },
+      methods: {
+
+      },
+
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
