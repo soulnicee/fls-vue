@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Lesson 3 - Task 4</title>
+</head>
+<style>
+  .workers__container {}
+
+  .workers__search {
+    width: 600px;
+    border: 2px solid green;
+    margin: 0 auto;
+    padding: 10px 30px;
+    background-color: #e0dada;
+  }
+
+  .workers__title {
+    text-align: center;
+  }
+
+  .workers__label {
+    color: royalblue;
+    font-size: 20px;
+  }
+
+  .workers__input {
+    font-size: 17px;
+  }
+
+  .workers__list {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(161, 16, 228);
+    max-height: 300px;
+    overflow-y: auto;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div class="workers__container">
+      <div class="workers__search">
+        <h2 class="workers__title">Список працівників</h2>
+        <label class="workers__label"> Ім'я працівника: <input type="text" placeholder="Я шукаю..." class="workers__input" v-model="searchedWorker">
+        </label>
+        <ul class="workers__list">
+          <li class="workers__item" v-for="(worker, index) in filteredWorkersList" :key="index">{{worker}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    const { createApp } = Vue
+    const workersData = ['Іванов І.І.', 'Петров П.П.', 'Скрипка С.П.', 'Гончаренко Г.О.',
+      'Івась І.І.', 'Сидоров С.С.', 'Коваленко К.О.', 'Зайцев З.З.', 'Мельник М.М.',
+      'Петренко П.М.', 'Бондаренко Б.І.', 'Григоренко Г.В.', 'Дмитренко Д.Д.',
+      'Тимошенко Т.О.', 'Кравчук К.К.', 'Павленко П.М.', 'Семененко С.О.', 'Загороднюк З.М.',
+      'Денисенко Д.Д.', 'Федоров Ф.О.', 'Марченко М.М.', 'Білозерський Б.П.',
+      'Герасименко Г.В.', 'Поліщук П.М.', 'Литвиненко Л.І.', 'Шевченко Ш.Ш.',
+      'Максименко М.О.', 'Петренко П.П.']
+    createApp({
+      data() {
+        return {
+          searchedWorker: null
+        }
+      },
+      computed: {
+        filteredWorkersList() {
+          if (!this.searchedWorker) {
+            return workersData
+          } else {
+            return workersData.filter((worker) => worker.toLowerCase().includes(this.searchedWorker.toLowerCase()))
+          }
+        }
+      },
+      methods: {
+      },
+
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
