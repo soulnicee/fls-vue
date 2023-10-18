@@ -8,25 +8,91 @@
   <title>Lesson 3 - Task 3</title>
 </head>
 <style>
+  .low {
+    background-color: orange;
+  }
+
+  .normal {
+    background-color: green;
+  }
+
+  .high {
+    background-color: red;
+  }
 </style>
 
 <body>
   <div id="app">
+    <div class="speed">
+      <div class="speed__limit">
+        <label> Введіть дозволену швидкість: <input type="number" v-model="limitSpeed">
+        </label>
+      </div>
+      <div class="speed__current">
+        <label> Введіть поточну швидкість: <input type="number" :class="{
+          [currentClass]: isCorrectData
+        }" :disabled="!limitSpeed" v-model="currentSpeed">
+        </label>
+      </div>
+      <div class="alert" v-show="isAlertVisible">Увага!</div>
+    </div>
   </div>
   <script>
     const { createApp } = Vue
-
+    const INTERVAL_MS = 1000
+    const speedIndicatorsRate = {
+      low: 50,
+      normal: 100,
+      alert: 90
+    }
     createApp({
       data() {
         return {
-
+          limitSpeed: null,
+          currentSpeed: null,
+          isAlertVisible: false,
+          intervalId: null
         }
       },
       computed: {
-
+        speedPercent() {
+          return (this.currentSpeed * 100) / this.limitSpeed
+        },
+        currentClass() {
+          let colorClass = null
+          if (this.speedPercent < speedIndicatorsRate.low) {
+            colorClass = 'low'
+          } else if (this.speedPercent < speedIndicatorsRate.normal) {
+            colorClass = 'normal'
+          } else colorClass = 'high'
+          return colorClass
+        },
+        isCorrectData() {
+          return this.limitSpeed && this.currentSpeed
+        }
       },
       methods: {
-
+        startAlert() {
+          if (!this.intervalId) {
+            this.intervalId = setInterval(() => {
+              this.isAlertVisible = !this.isAlertVisible
+            }, INTERVAL_MS);
+          }
+        },
+        stopAlert() {
+          if (this.intervalId) {
+            clearInterval(this.intervalId)
+            this.isAlertVisible = false
+            this.intervalId = null
+          }
+        }
+      },
+      watch: {
+        speedPercent(newValue, oldValue) {
+          if (newValue > speedIndicatorsRate.alert) {
+            this.startAlert()
+          } else this.stopAlert()
+        }
       },
 
     }).mount('#app')
