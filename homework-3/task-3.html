@@ -25,7 +25,7 @@
   <div id="app">
     <div class="speed">
       <div class="speed__limit">
-        <label> Введіть дозволену швидкість: <input type="number" v-model="limitSpeed">
+        <label> Введіть дозволену швидкість: <input ref="limitSpeed" type="number" v-model="limitSpeed">
         </label>
       </div>
       <div class="speed__current">
@@ -94,7 +94,9 @@
           } else this.stopAlert()
         }
       },
-
+      mounted() {
+        this.$refs.limitSpeed.focus()
+      },
     }).mount('#app')
   </script>
 </body>
