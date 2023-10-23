@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ProductList from '@/components/ProductList.vue';
+import ProductList from './components/ProductList.vue';
 import { raspberryList } from "./constants/2_data_raspberry";
 export default {
   name: 'App',
