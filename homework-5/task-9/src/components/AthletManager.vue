@@ -2,11 +2,11 @@
   <div class="manager__container">
     <div class="manager__item">
       <h2 class="manager__title">Загальний список</h2>
-      <athlet-list :athlet-list="generalAthletList" @choose="$emit('choose', $event)" />
+      <athlet-list :athlet-list="generalAthletList" @choose="$emit('choose', { athletId: $event, general: true })" />
     </div>
     <div class="manager__item">
       <h2 class="manager__title">Обрані для змагання</h2>
-      <athlet-list :athlet-list="choosenAthletList" @choose="$emit('choose', $event)" />
+      <athlet-list :athlet-list="choosenAthletList" @choose="$emit('choose', { athletId: $event, general: false })" />
     </div>
   </div>
 </template>

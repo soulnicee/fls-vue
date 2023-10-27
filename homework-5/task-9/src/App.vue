@@ -16,19 +16,21 @@ export default {
     }
   },
   methods: {
-    onItemChoosen(athletId) {
-      let choosenAthlet = this.athletsList.find((athlet) => athlet.id === athletId)
-      if (choosenAthlet) {
+    onItemChoosen({ athletId, general }) {
+      console.log(athletId);
+      let choosenAthlet
+      let choosenAthletId
+      if (general) {
+        choosenAthlet = this.athletsList.find((athlet) => athlet.id === athletId)
         this.choosenAthletList.push(choosenAthlet)
-        const choosenAthletId = this.athletsList.indexOf(choosenAthlet)
+        choosenAthletId = this.athletsList.indexOf(choosenAthlet)
         this.athletsList.splice(choosenAthletId, 1)
       } else {
         choosenAthlet = this.choosenAthletList.find((athlet) => athlet.id === athletId)
         this.athletsList.push(choosenAthlet)
-        const choosenAthletId = this.choosenAthletList.indexOf(choosenAthlet)
+        choosenAthletId = this.choosenAthletList.indexOf(choosenAthlet)
         this.choosenAthletList.splice(choosenAthletId, 1)
       }
-      console.log(choosenAthlet);
     }
   },
 };
