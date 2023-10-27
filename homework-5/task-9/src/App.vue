@@ -17,7 +17,6 @@ export default {
   },
   methods: {
     onItemChoosen({ athletId, general }) {
-      console.log(athletId);
       let choosenAthlet
       let choosenAthletId
       if (general) {

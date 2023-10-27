@@ -2,11 +2,11 @@
   <div class="manager__container">
     <div class="manager__item">
       <h2 class="manager__title">Загальний список</h2>
-      <athlet-list :athlet-list="generalAthletList" @choose="$emit('choose', { athletId: $event, general: true })" />
+      <athlet-list :athlet-list="generalAthletList" :arrow="arrow.general" @choose="$emit('choose', { athletId: $event, general: true })" />
     </div>
     <div class="manager__item">
       <h2 class="manager__title">Обрані для змагання</h2>
-      <athlet-list :athlet-list="choosenAthletList" @choose="$emit('choose', { athletId: $event, general: false })" />
+      <athlet-list :athlet-list="choosenAthletList" :arrow="arrow.choosen" @choose="$emit('choose', { athletId: $event, general: false })" />
     </div>
   </div>
 </template>
@@ -28,7 +28,14 @@ export default {
       required: true
     },
   },
-
+  data() {
+    return {
+      arrow: {
+        general: '=====>>>',
+        choosen: '<<<====='
+      }
+    }
+  },
 }
 </script>
 

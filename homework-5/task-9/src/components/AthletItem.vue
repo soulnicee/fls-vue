@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="item__name">{{ athletItem.name }}</div>
-    <div class="item__arrow" @click="$emit('choose', athletItem.id)">====>>>></div>
+    <div class="item__arrow" @click="$emit('choose', athletItem.id)">{{ arrow }}</div>
   </div>
 </template>
 
@@ -13,6 +13,10 @@ export default {
       type: Object,
       required: true
     },
+    arrow: {
+      type: String,
+      required: true
+    }
   },
 }
 </script>

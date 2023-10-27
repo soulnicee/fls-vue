@@ -2,7 +2,7 @@
   <div>
     <div class="list__empty" v-if="!athletList.length"> None </div>
     <div class="list__items" v-else>
-      <athlet-item v-for="athlet in athletList" :key="athlet.id" :athlet-item="athlet" @choose="$emit('choose', $event)" />
+      <athlet-item v-for="athlet in athletList" :key="athlet.id" :arrow="arrow" :athlet-item="athlet" @choose="$emit('choose', $event)" />
     </div>
   </div>
 </template>
@@ -19,6 +19,10 @@ export default {
       type: Array,
       required: true
     },
+    arrow: {
+      type: String,
+      required: true
+    }
   },
 }
 </script>
