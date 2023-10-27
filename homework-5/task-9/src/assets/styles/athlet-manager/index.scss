@@ -1,0 +1,19 @@
+.manager {
+  
+  // .manager__container
+  &__container {
+    display: flex;
+    gap: 50px;
+    border: 2px solid goldenrod;
+    padding: 10px;
+    background-color: #ebeaea;
+  }
+  // .manager__item
+  &__item {
+    flex: 1 1 50%;
+  }
+  // .manager__title
+  &__title {
+    text-align: center;
+  }
+}
