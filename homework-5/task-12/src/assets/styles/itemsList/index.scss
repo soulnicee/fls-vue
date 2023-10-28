@@ -1,0 +1,15 @@
+.list {
+  border: 2px solid #000;
+  padding: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  // .list__empty
+  &__empty {
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    font-weight: 700;
+  }
+}

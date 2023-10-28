@@ -1,0 +1,14 @@
+.item {
+  font-size: 20px;
+  cursor: pointer;
+  align-self: flex-start;
+  &:hover{
+    color: forestgreen;
+  }
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+.choosen {
+  color: blue;
+}
