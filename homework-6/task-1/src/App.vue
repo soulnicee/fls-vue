@@ -1,26 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <my-input v-model:vUserAge.check.setColor="userAge" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import MyInput from "./components/MyInput.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    MyInput,
+  },
+  data() {
+    return {
+      userAge: null
+    }
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss"></style>
