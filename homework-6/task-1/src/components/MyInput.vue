@@ -45,6 +45,9 @@ export default {
       if (age > 21) this.inputColorClass = 'young'
     }
   },
+  mounted() {
+    this.$refs.userAgeInput.focus()
+  },
 }
 </script>
 
