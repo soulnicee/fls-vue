@@ -1,26 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <user-info v-model:vName.checkName.checkAge="userName" v-model:vAge.checkAge="userAge" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import UserInfo from "@/components/UserInfo.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    UserInfo
+  },
+  data() {
+    return {
+      userName: null,
+      userAge: null
+    }
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss"></style>
