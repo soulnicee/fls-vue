@@ -1,30 +1,15 @@
 <template>
-  <div class="container">
-    <div class="container__item">
-      <products-filter />
-    </div>
-    <div class="container__item">
-      <products-list />
-    </div>
-  </div>
+  <store-manager />
 </template>
 
 <script>
-import ProductsList from "@/components/ProductsList.vue";
-import ProductsFilter from "@/components/ProductsFilter.vue";
+import StoreManager from "@/components/StoreManager.vue";
 export default {
   name: "App",
   components: {
-    ProductsList,
-    ProductsFilter
+    StoreManager
   },
 };
 </script>
 
-<style lang="scss">
-.container {
-  display: grid;
-  grid-template-columns: 15% 85%;
-  gap: 25px;
-}
-</style>
+<style lang="scss"></style>

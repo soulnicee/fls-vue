@@ -2,8 +2,6 @@
   <div class="sidebar">
     <store-filter :sellers-list="sellersList" v-model.check="choosenSeller" />
     <brand-filter :brands-list="brandsList" v-model.check="choosenBrand" />
-    <div>{{ choosenSeller }}</div>
-    <div>{{ choosenBrand }}</div>
   </div>
 </template>
 
@@ -27,21 +25,21 @@ export default {
     ...mapGetters(['sellersList', 'brandsList'])
   },
   methods: {
-    ...mapActions(['getFilteredList']),
+    ...mapActions(['loadSellersList', 'loadBrandsList', 'getChoosenSeller', 'getChoosenBrand']),
   },
   watch: {
     choosenSeller(newValue) {
-      this.getFilteredList({
-        choosenSellersList: newValue,
-        choosenBrandsList: this.choosenBrand,
-      });
+      this.getChoosenSeller(newValue)
+      this.getChoosenBrand(this.choosenBrand)
     },
     choosenBrand(newValue) {
-      this.getFilteredList({
-        choosenSellersList: this.choosenSeller,
-        choosenBrandsList: newValue,
-      });
+      this.getChoosenBrand(newValue)
+      this.getChoosenSeller(this.choosenSeller)
     },
+  },
+  created() {
+    this.loadSellersList()
+    this.loadBrandsList()
   },
 }
 </script>

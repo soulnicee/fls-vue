@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "ASUS"
+  },
+  {
+    "id": 2,
+    "name": "HP"
+  },
+  {
+    "id": 3,
+    "name": "Lenovo"
+  },
+  {
+    "id": 4,
+    "name": "Dell"
+  },
+  {
+    "id": 1,
+    "name": "Acer"
+  },
+  {
+    "id": 1,
+    "name": "Apple"
+  },
+  {
+    "id": 1,
+    "name": "Gigabyte"
+  },
+  {
+    "id": 1,
+    "name": "MSI"
+  },
+  {
+    "id": 1,
+    "name": "Xiaomi"
+  }
+]

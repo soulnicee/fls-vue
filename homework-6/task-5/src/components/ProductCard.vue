@@ -26,10 +26,11 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 25px;
+  border: 1px solid #000;
 
   // .card__image
   &__image {
-    max-width: 300px;
+    max-width: 200px;
 
     img {
       width: 100%;

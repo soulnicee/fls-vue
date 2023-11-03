@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import ProductCard from '@/components/ProductCard.vue';
 export default {
   name: 'ProductsList',
@@ -13,7 +13,13 @@ export default {
     ProductCard,
   },
   computed: {
-    ...mapGetters(['filteredNotebooksList'])
+    ...mapGetters(['notebooksList', 'filteredNotebooksList']),
+  },
+  methods: {
+    ...mapActions(['loadNotebooksList'])
+  },
+  created() {
+    this.loadNotebooksList()
   },
 }
 </script>

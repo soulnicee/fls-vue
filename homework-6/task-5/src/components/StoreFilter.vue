@@ -30,6 +30,7 @@ export default {
       default: () => ({})
     }
   },
+  emits: ['update:modelValue'],
   computed: {
     sellerChecked: {
       get() {
