@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="container">
+    <div class="container__item">
+      <products-filter />
+    </div>
+    <div class="container__item">
+      <products-list />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import ProductsList from "@/components/ProductsList.vue";
+import ProductsFilter from "@/components/ProductsFilter.vue";
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    ProductsList,
+    ProductsFilter
   },
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.container {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  gap: 25px;
 }
 </style>
