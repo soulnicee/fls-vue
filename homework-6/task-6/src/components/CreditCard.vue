@@ -2,11 +2,11 @@
   <div class="card">
     <div class="card__container">
       <div class="card__number">
-        <card-number :card-titles="cardData.titles" :icons-path="cardData.logos" />
+        <card-number :card-titles="cardData.titles" :icons-path="cardData.logos" @number-change-focus="changeFocustoDate" />
       </div>
       <div class="card__detail">
-        <card-date :card-titles="cardData.titles" />
-        <card-code :card-titles="cardData.titles" :icons-path="cardData.logos" />
+        <card-date :card-titles="cardData.titles" :focus-change="numberChangeFocus" @date-change-focus="changeFocustoCode" />
+        <card-code :card-titles="cardData.titles" :icons-path="cardData.logos" :focus-change="dateChangeFocus" />
       </div>
     </div>
   </div>
@@ -26,7 +26,17 @@ export default {
   },
   data() {
     return {
-      cardData
+      cardData,
+      numberChangeFocus: false,
+      dateChangeFocus: false
+    }
+  },
+  methods: {
+    changeFocustoDate() {
+      this.numberChangeFocus = true
+    },
+    changeFocustoCode() {
+      this.dateChangeFocus = true
     }
   },
 };

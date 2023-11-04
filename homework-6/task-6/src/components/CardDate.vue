@@ -2,8 +2,8 @@
   <div class="expiry">
     <label for="expiry-date-input" class="expiry__label">{{ cardTitles.dateTitle }}</label>
     <div class="expiry__item">
-      <input id="expiry-date-input" class="expiry__input" type="tel" maxlength="5" placeholder="MM/YY" inputmode="numeric" v-model="cardExpiryDate"
-        @keydown="onKeyDown" />
+      <input ref="inpDateCard" id="expiry-date-input" class="expiry__input" type="tel" maxlength="5" placeholder="MM/YY" inputmode="numeric"
+        v-model="cardExpiryDate" @keydown="onKeyDown" @input="changeFocus" />
     </div>
   </div>
 </template>
@@ -16,6 +16,9 @@ export default {
     cardTitles: {
       type: Object,
     },
+    focusChange: {
+      type: Boolean
+    }
   },
   data() {
     return {
@@ -23,13 +26,20 @@ export default {
     }
   },
   methods: {
-    onKeyDown
+    onKeyDown,
+    changeFocus() {
+      let length = this.cardExpiryDate.length
+      if (length === 5) this.$emit('dateChangeFocus', true)
+    }
   },
   watch: {
     cardExpiryDate(newValue, oldValue) {
       console.log(this.cardExpiryDate[0]);
       if (newValue.length === 2 && oldValue.length === 1) this.cardExpiryDate = newValue + '/'
       else if (newValue.length === 2 && oldValue.length === 3) this.cardExpiryDate = newValue[0]
+    },
+    focusChange(newValue) {
+      if (newValue) this.$refs.inpDateCard.focus()
     }
   },
 };

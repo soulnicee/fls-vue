@@ -2,7 +2,7 @@
   <div class="code">
     <label for="code-input" class="code__label">{{ cardTitles.codeTitle }}</label>
     <div class="code__item">
-      <input id="code-input" class="code__input" type="tel" maxlength="3" placeholder="XXX" inputmode="numeric" v-model="cvvCode"
+      <input ref="inpCodeCard" id="code-input" class="code__input" type="tel" maxlength="3" placeholder="XXX" inputmode="numeric" v-model="cvvCode"
         @keydown="onKeyDown" />
       <img :src="iconsPath.questionLogo" class="code__icon">
     </div>
@@ -20,6 +20,9 @@ export default {
     iconsPath: {
       type: Object,
     },
+    focusChange: {
+      type: Boolean
+    }
   },
   data() {
     return {
@@ -34,6 +37,9 @@ export default {
       if (newValue) {
         this.cvvCode = this.cvvCode.replace(/\d/g, "*")
       }
+    },
+    focusChange(newValue) {
+      if (newValue) this.$refs.inpCodeCard.focus()
     }
   },
 };

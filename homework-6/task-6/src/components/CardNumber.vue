@@ -2,8 +2,8 @@
   <div class="card-number">
     <label for="card-number-input" class="card-number__label">{{ cardTitles.numberTitle }}</label>
     <div class="card-number__item">
-      <input id="card-number-input" class="card-number__input" type="tel" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" inputmode="numeric"
-        v-model="cardNumber" @keydown="onKeyDown" />
+      <input ref="inpNumberCard" id="card-number-input" class="card-number__input" type="tel" maxlength="19" placeholder="XXXX XXXX XXXX XXXX"
+        inputmode="numeric" v-model="cardNumber" @keydown="onKeyDown" @input="changeFocus" />
       <img :src="iconPath" class="card-number__icon">
     </div>
   </div>
@@ -47,7 +47,11 @@ export default {
     }
   },
   methods: {
-    onKeyDown
+    onKeyDown,
+    changeFocus() {
+      let length = this.cardNumber.length
+      if (length === 19) this.$emit('numberChangeFocus', true)
+    }
   },
   watch: {
     cardNumber(newValue) {
@@ -59,11 +63,14 @@ export default {
       //   return acc + char;
       // }, '');
       // this.cardNumber = formattedNumber;
-
       newValue = newValue.replace(/\s/g, '').match(/.{1,4}/g)
       if (newValue) this.cardNumber = newValue.join(' ')
       else this.cardNumber = ''
+
     }
+  },
+  mounted() {
+    this.$refs.inpNumberCard.focus()
   },
 };
 </script>
