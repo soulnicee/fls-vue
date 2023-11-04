@@ -27,6 +27,7 @@ export default {
   },
   watch: {
     cardExpiryDate(newValue, oldValue) {
+      console.log(this.cardExpiryDate[0]);
       if (newValue.length === 2 && oldValue.length === 1) this.cardExpiryDate = newValue + '/'
       else if (newValue.length === 2 && oldValue.length === 3) this.cardExpiryDate = newValue[0]
     }
