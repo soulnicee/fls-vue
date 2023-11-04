@@ -51,6 +51,15 @@ export default {
   },
   watch: {
     cardNumber(newValue) {
+      // newValue = newValue.replace(/\s/g, '');
+      // const formattedNumber = [...newValue].reduce((acc, char, index) => {
+      //   if (index > 0 && index % 4 === 0) {
+      //     return acc + ' ' + char;
+      //   }
+      //   return acc + char;
+      // }, '');
+      // this.cardNumber = formattedNumber;
+
       newValue = newValue.replace(/\s/g, '').match(/.{1,4}/g)
       if (newValue) this.cardNumber = newValue.join(' ')
       else this.cardNumber = ''
