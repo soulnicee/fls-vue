@@ -11,6 +11,13 @@ import { transformPrice } from "@/store/helpers.js";
     }
   },
   getters: {
+    summaryPrice:({cartList, currentCurrencyRate}) => {
+      let sum = Array.from(cartList)
+      return sum.reduce((acc, item) => {
+        if (currentCurrencyRate == 1) return acc + item.summary
+        else return ((acc + item.summary) / currentCurrencyRate).toFixed(2)
+      },0)
+    },
     productList:({productList, currentCurrencyRate}) => {
       if (currentCurrencyRate == 1) return productList
       else {

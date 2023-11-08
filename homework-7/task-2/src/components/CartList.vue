@@ -10,6 +10,13 @@
         <button type="button" class="button" @click="deleteFromCart(product)">Відмовитись</button>
       </div>
     </div>
+    <div class="item-summary">
+      <div class="item-summary__item">
+        <div class="item-summary__title">Разом до оплати</div>
+        <div class="item-summary__price">{{ summaryPrice }}</div>
+      </div>
+      <button type="button" class="item-summary__button">Оплатити</button>
+    </div>
   </div>
   <div v-else class="empty" @click="show">Ви нічого не купили</div>
 </template>
@@ -19,7 +26,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'CartList',
   computed: {
-    ...mapGetters(['cartList'])
+    ...mapGetters(['cartList', 'summaryPrice'])
   },
   methods: {
     ...mapActions(['deleteFromCart'])
@@ -64,4 +71,37 @@ export default {
 .button {}
 
 .empty {}
+
+
+.item-summary {
+  display: flex;
+  gap: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  // .item-summary__item
+  &__item {
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex: 1 1 100%;
+  }
+
+  // .item-summary__title
+  &__title {
+    font-size: 18px;
+  }
+
+  // .item-summary__price
+  &__price {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  // .item-summary__button
+  &__button {}
+}
 </style>
