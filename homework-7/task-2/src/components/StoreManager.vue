@@ -3,16 +3,12 @@
     <h1 class="manager__title"></h1>
     <div class="manager__lists">
       <div class="manager__products products">
-        <h2 class="products__title"></h2>
-        <div class="products__list">
-          <products-list />
-        </div>
+        <h2 class="products__title">Список Товарів</h2>
+        <products-list />
       </div>
       <div class="manager__cart cart">
         <h2 class="cart__title"></h2>
-        <div class="cart__list">
-          <cart-list />
-        </div>
+        <cart-list />
       </div>
     </div>
     <div class="manager__currency currency">

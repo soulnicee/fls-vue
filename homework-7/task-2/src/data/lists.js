@@ -1,46 +1,46 @@
 export const productList = [
   {
-    item: 'Хліб',
+    name: 'Хліб',
     price: 24,
     id: 1
   },
   {
-    item: 'Молоко',
+    name: 'Молоко',
     price: 31,
     id: 2
   },
   {
-    item: 'Хліб',
-    price: 24,
+    name: 'Акумулятор',
+    price: 11000,
     id: 3
   },
   {
-    item: 'Ковбаса',
+    name: 'Ковбаса',
     price: 350,
     id: 4
   },
   {
-    item: 'Шовдарь',
+    name: 'Шовдарь',
     price: 950,
     id: 5
   },
   {
-    item: 'Пікниця',
+    name: 'Пікниця',
     price: 210,
     id: 6
   },
   {
-    item: 'Вода',
+    name: 'Вода',
     price: 15,
     id: 7
   },
   {
-    item: 'Ноутбук',
+    name: 'Ноутбук',
     price: 52999,
     id: 8
   },
   {
-    item: 'Монітор',
+    name: 'Монітор',
     price: 10000,
     id: 9
   },
