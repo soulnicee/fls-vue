@@ -15,10 +15,10 @@
         <div class="item-summary__title">Разом до оплати</div>
         <div class="item-summary__price">{{ summaryPrice }}</div>
       </div>
-      <button type="button" class="item-summary__button">Оплатити</button>
+      <button type="button" class="item-summary__button" @click="checkOut">Оплатити</button>
     </div>
   </div>
-  <div v-else class="empty" @click="show">Ви нічого не купили</div>
+  <div v-else class="empty">Ви нічого не купили</div>
 </template>
 
 <script>
@@ -29,7 +29,7 @@ export default {
     ...mapGetters(['cartList', 'summaryPrice'])
   },
   methods: {
-    ...mapActions(['deleteFromCart'])
+    ...mapActions(['deleteFromCart', 'checkOut'])
   },
 }
 </script>

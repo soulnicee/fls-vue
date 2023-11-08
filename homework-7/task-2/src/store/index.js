@@ -12,11 +12,13 @@ import { transformPrice } from "@/store/helpers.js";
   },
   getters: {
     summaryPrice:({cartList, currentCurrencyRate}) => {
-      let sum = Array.from(cartList)
-      return sum.reduce((acc, item) => {
-        if (currentCurrencyRate == 1) return acc + item.summary
-        else return ((acc + item.summary) / currentCurrencyRate).toFixed(2)
+      let sum = [...cartList].reduce((acc, item) => {
+        return acc + item.price * item.count
       },0)
+      if (currentCurrencyRate !== 1) {
+        sum = transformPrice(sum, currentCurrencyRate)
+      }
+      return sum
     },
     productList:({productList, currentCurrencyRate}) => {
       if (currentCurrencyRate == 1) return productList
@@ -30,10 +32,10 @@ import { transformPrice } from "@/store/helpers.js";
       }
     },
     cartList: ({cartList, currentCurrencyRate}) => {
-      let newCartList = Array.from(cartList)
-      if (currentCurrencyRate == 1) return newCartList
+      // let newCartList = Array.from(cartList)
+      if (currentCurrencyRate == 1) return [...cartList]
       else {
-        return newCartList.map((item) => {
+        return [...cartList].map((item) => {
           return {
             ...item,
             price: transformPrice(item.price, currentCurrencyRate),
@@ -63,10 +65,8 @@ import { transformPrice } from "@/store/helpers.js";
       }
     },
     deleteFromCartList(state, item) {
-      console.log(item);
       if (state.cartList.has(item)) {
         item.count -=1
-        
         item.summary -= item.price 
         if (item.count === 0) {
           state.cartList.delete(item)
@@ -75,6 +75,9 @@ import { transformPrice } from "@/store/helpers.js";
     },
     currencyChange(state, currencyId) {
       state.currentCurrencyRate = state.currencyList.find(item => item.id == currencyId).rate
+    },
+    checkOutProducts(state) {
+      state.cartList.clear()
     }
   },
   actions: {
@@ -92,6 +95,9 @@ import { transformPrice } from "@/store/helpers.js";
     },
     onCurrencyChange({commit}, currencyId) {
       commit('currencyChange', currencyId)
+    },
+    checkOut({commit}) {
+      commit('checkOutProducts')
     }
   },
   modules: {},

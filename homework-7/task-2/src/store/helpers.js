@@ -1,3 +1,4 @@
 export function transformPrice(itemPrice, rate) {
-  return (itemPrice / rate).toFixed(2)
+  let res = (itemPrice / rate).toFixed(2)
+  return parseFloat(res)
 }
