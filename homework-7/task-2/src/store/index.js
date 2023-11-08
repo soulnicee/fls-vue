@@ -1,17 +1,40 @@
 import { createStore } from "vuex";
 import { productList, currencyList } from "@/data/lists.js";
-
+import { transformPrice } from "@/store/helpers.js";
  const store = createStore({
   state() {
     return {
       productList: [],
       cartList: new Set(),
-      currencyList: []
+      currencyList: [],
+      currentCurrencyRate: 1
     }
   },
   getters: {
-    productList:({productList}) => productList,
-    cartList: ({cartList}) => Array.from(cartList),
+    productList:({productList, currentCurrencyRate}) => {
+      if (currentCurrencyRate == 1) return productList
+      else {
+        return productList.map((item) => {
+          return {
+            ...item,
+            price: transformPrice(item.price, currentCurrencyRate)
+          }
+        })
+      }
+    },
+    cartList: ({cartList, currentCurrencyRate}) => {
+      let newCartList = Array.from(cartList)
+      if (currentCurrencyRate == 1) return newCartList
+      else {
+        return newCartList.map((item) => {
+          return {
+            ...item,
+            price: transformPrice(item.price, currentCurrencyRate),
+            summary: transformPrice(item.summary, currentCurrencyRate)
+          }
+        })
+      }
+    },
     currencyList: ({currencyList}) => currencyList
   },
   mutations: {
@@ -33,13 +56,18 @@ import { productList, currencyList } from "@/data/lists.js";
       }
     },
     deleteFromCartList(state, item) {
+      console.log(item);
       if (state.cartList.has(item)) {
         item.count -=1
+        
         item.summary -= item.price 
         if (item.count === 0) {
           state.cartList.delete(item)
         }
       }
+    },
+    currencyChange(state, currencyId) {
+      state.currentCurrencyRate = state.currencyList.find(item => item.id == currencyId).rate
     }
   },
   actions: {
@@ -54,6 +82,9 @@ import { productList, currencyList } from "@/data/lists.js";
     },
     deleteFromCart({commit}, item) {
       commit('deleteFromCartList', item)
+    },
+    onCurrencyChange({commit}, currencyId) {
+      commit('currencyChange', currencyId)
     }
   },
   modules: {},

@@ -49,10 +49,12 @@ export const productList = [
 export const currencyList = [
   {
     id: 1,
-    name: 'Гривня'
+    name: 'Гривня',
+    rate: 1
   },
   {
     id: 2,
-    name: 'Долар'
+    name: 'Долар',
+    rate: 37
   },
 ]

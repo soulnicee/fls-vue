@@ -4,8 +4,8 @@
       <div class="item__cart">
         <div class="cart-name">{{ product.name }}</div>
         <div class="cart-price">{{ product.summary }}</div>
-        <div class="cart-count">{{ product.count }}</div>
       </div>
+      <div class="cart-count">{{ product.count }}шт.</div>
       <div class="item__button">
         <button type="button" class="button" @click="deleteFromCart(product)">Відмовитись</button>
       </div>
@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 .list {
-  max-width: 300px;
+  max-width: 350px;
 }
 
 .item {
@@ -52,9 +52,14 @@ export default {
   &__button {}
 }
 
-.cart-name {}
+.cart-name {
+  font-size: 18px;
+}
 
-.cart-price {}
+.cart-price {
+  font-size: 18px;
+  font-weight: 700;
+}
 
 .button {}
 
