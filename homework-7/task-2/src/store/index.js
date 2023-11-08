@@ -32,7 +32,6 @@ import { transformPrice } from "@/store/helpers.js";
       }
     },
     cartList: ({cartList, currentCurrencyRate}) => {
-      // let newCartList = Array.from(cartList)
       if (currentCurrencyRate == 1) return [...cartList]
       else {
         return [...cartList].map((item) => {
@@ -65,11 +64,12 @@ import { transformPrice } from "@/store/helpers.js";
       }
     },
     deleteFromCartList(state, item) {
-      if (state.cartList.has(item)) {
-        item.count -=1
-        item.summary -= item.price 
-        if (item.count === 0) {
-          state.cartList.delete(item)
+      let cartItem = [...state.cartList].find(cartItem => cartItem.id === item.id);
+      if (cartItem) {
+        cartItem.count -= 1;
+        cartItem.summary = cartItem.price * cartItem.count;
+        if (cartItem.count === 0) {
+          state.cartList.delete(cartItem);
         }
       }
     },
