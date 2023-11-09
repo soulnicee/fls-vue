@@ -3,7 +3,7 @@
     <div class="item" v-for="product in productList" :key="product.id">
       <div class="item__product">
         <div class="product-name">{{ product.name }}</div>
-        <div class="product-price">{{ product.price }}</div>
+        <div class="product-price">{{ product.price }} {{ currentCurrencySymbol }}</div>
       </div>
       <div class="item__button">
         <button type="button" class="button" @click="addToCart(product.id)">Купити</button>
@@ -17,7 +17,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'ProductsList',
   computed: {
-    ...mapGetters(['productList'])
+    ...mapGetters(['productList', 'currentCurrencySymbol'])
   },
   methods: {
     ...mapActions(['loadProductsList', 'addToCart'])
@@ -37,6 +37,7 @@ export default {
   display: flex;
   gap: 30px;
 
+
   &:not(:last-child) {
     margin-bottom: 5px;
   }
@@ -46,7 +47,7 @@ export default {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    flex: 1 1 100%;
+    flex: 1 0 100%;
   }
 
   // .item__button

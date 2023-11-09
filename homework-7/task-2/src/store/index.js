@@ -7,7 +7,8 @@ import { transformPrice } from "@/store/helpers.js";
       productList: [],
       cartList: new Set(),
       currencyList: [],
-      currentCurrencyRate: 1
+      currentCurrencyRate: 1,
+      currentCurrencySymbol: '₴'
     }
   },
   getters: {
@@ -43,7 +44,8 @@ import { transformPrice } from "@/store/helpers.js";
         })
       }
     },
-    currencyList: ({currencyList}) => currencyList
+    currencyList: ({currencyList}) => currencyList,
+    currentCurrencySymbol: ({currentCurrencySymbol}) => currentCurrencySymbol
   },
   mutations: {
     setProductList(state, list) {
@@ -74,7 +76,9 @@ import { transformPrice } from "@/store/helpers.js";
       }
     },
     currencyChange(state, currencyId) {
-      state.currentCurrencyRate = state.currencyList.find(item => item.id == currencyId).rate
+      let currency = state.currencyList.find(item => item.id == currencyId)
+      state.currentCurrencyRate = currency.rate
+      state.currentCurrencySymbol = currency.symbol
     },
     checkOutProducts(state) {
       state.cartList.clear()

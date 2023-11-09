@@ -47,7 +47,8 @@ export default {
   // .manager__lists
   &__lists {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 30% 1fr 15%;
+    gap: 50px;
   }
 
   // .manager__products
@@ -63,7 +64,9 @@ export default {
 .products {
 
   // .products__title
-  &__title {}
+  &__title {
+    text-align: center;
+  }
 }
 
 .cart {
@@ -73,6 +76,7 @@ export default {
 }
 
 .currency {
+  &__title {}
 
   // .currency__select
   &__select {}

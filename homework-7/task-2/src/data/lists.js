@@ -50,11 +50,13 @@ export const currencyList = [
   {
     id: 1,
     name: 'Гривня',
-    rate: 1
+    rate: 1,
+    symbol: '₴'
   },
   {
     id: 2,
     name: 'Долар',
-    rate: 37
+    rate: 37,
+    symbol: '$'
   },
 ]

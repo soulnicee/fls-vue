@@ -1,6 +1,6 @@
 <template>
   <select @change="changeCurrency">
-    <option v-for="currency in currencyList" :key="currency.id" :value="currency.id">{{ currency.name }}</option>
+    <option v-for="currency in  currencyList " :key="currency.id" :value="currency.id">{{ currency.name }}</option>
   </select>
 </template>
 

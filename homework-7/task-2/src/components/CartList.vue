@@ -3,7 +3,7 @@
     <div class="item" v-for="product in cartList" :key="product.id">
       <div class="item__cart">
         <div class="cart-name">{{ product.name }}</div>
-        <div class="cart-price">{{ product.summary }}</div>
+        <div class="cart-price">{{ product.summary }} {{ currentCurrencySymbol }}</div>
       </div>
       <div class="cart-count">{{ product.count }}шт.</div>
       <div class="item__button">
@@ -13,7 +13,7 @@
     <div class="item-summary">
       <div class="item-summary__item">
         <div class="item-summary__title">Разом до оплати</div>
-        <div class="item-summary__price">{{ summaryPrice }}</div>
+        <div class="item-summary__price">{{ summaryPrice }} {{ currentCurrencySymbol }}</div>
       </div>
       <button type="button" class="item-summary__button" @click="checkOut">Оплатити</button>
     </div>
@@ -26,7 +26,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'CartList',
   computed: {
-    ...mapGetters(['cartList', 'summaryPrice'])
+    ...mapGetters(['cartList', 'summaryPrice', 'currentCurrencySymbol'])
   },
   methods: {
     ...mapActions(['deleteFromCart', 'checkOut'])
@@ -52,7 +52,7 @@ export default {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    flex: 1 1 100%;
+    flex: 1 0 100%;
   }
 
   // .item__button
@@ -76,6 +76,8 @@ export default {
 .item-summary {
   display: flex;
   gap: 30px;
+  padding-top: 10px;
+  border-top: 1px solid #000;
 
   &:not(:last-child) {
     margin-bottom: 5px;
@@ -87,12 +89,13 @@ export default {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    flex: 1 1 100%;
+    flex: 1 0 100%;
   }
 
   // .item-summary__title
   &__title {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 600;
   }
 
   // .item-summary__price
