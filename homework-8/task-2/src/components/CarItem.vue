@@ -4,15 +4,9 @@
       <img :src="carData.srcImg">
     </a>
     <div class="car__content">
-      <a :href="carData.link" class="car__title">{{ carData.model }} {{ carData.year }}</a>
+      <a :href="carData.link" class="car__title">{{ carData.title }}</a>
       <div class="car__about">Тут може бути ваша реклама :)</div>
-      <div class="car__price">{{ carData.price }}</div>
-      <div class="car__info">
-        <div class="car__info-item">{{ carData.mileage }}</div>
-        <div class="car__info-item">{{ carData.city }}</div>
-        <div class="car__info-item">{{ carData.engine }}</div>
-        <div class="car__info-item">{{ carData.transmission }}</div>
-      </div>
+      <div class="car__price">{{ carData.price }} $</div>
     </div>
   </div>
 </template>
@@ -77,17 +71,5 @@ export default {
     font-size: 20px;
     color: rgb(30, 185, 37);
   }
-
-  // .car__info
-  &__info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    color: #000;
-    font-size: 15px;
-  }
-
-  // .car__info-item
-  &__info-item {}
 }
 </style>
