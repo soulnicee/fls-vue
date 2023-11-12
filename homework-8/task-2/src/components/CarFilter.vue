@@ -10,7 +10,7 @@
     <div class="filter__item">
       <div v-for="body in carBodyTypes" :key="body.id" class="checkbox"
         @change="updateFilter({ filterName: 'bodyType', filterValue: $event.target.value })">
-        <input :id="body.id" class="checkbox__input" type="checkbox" :value="body.type">
+        <input :id="body.id" :value="body.type" class="checkbox__input" type="checkbox">
         <label :for="body.id" class="checkbox__label"><span class="checkbox__text">{{ body.name }}</span></label>
       </div>
     </div>
@@ -21,7 +21,7 @@
       </label>
     </div>
     <div class="filter__item">
-      <label> Модель <select @change="updateFilter({ filterName: 'model', filterName: $event.target.value })">
+      <label> Модель <select @change="updateFilter({ filterName: 'model', filterValue: $event.target.value })">
           <option v-for="model in carModel" :key="model" :value="model">{{ model }}</option>
         </select>
       </label>

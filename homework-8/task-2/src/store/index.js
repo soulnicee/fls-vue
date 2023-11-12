@@ -32,8 +32,8 @@ const store =  createStore({
           (!filters.model || car.model === filters.model) &&
           (!filters.yearFrom || car.year >= filters.yearFrom) &&
           (!filters.yearTo || car.year <= filters.yearTo)
-        );
-      });
+        )
+      })
     },
   },
   mutations: {
@@ -47,6 +47,7 @@ const store =  createStore({
       state.carBodyTypes = list
     },
     updateFilterValue(state, { filterName, filterValue }) {
+      console.log(filterName, filterValue);
       state.filters = {
         ...state.filters,
         [filterName]: filterValue,
