@@ -36,9 +36,7 @@ export const carBodyTypes = [
 		type: 'hatchback',
 		name: 'хетчбек'
 	},
-]
-export const truckBodyTypes = [
-	{
+  {
 		id: 1,
 		type: 'wagon',
 		name: 'фургон'

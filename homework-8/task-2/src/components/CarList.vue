@@ -1,6 +1,6 @@
 <template>
   <div class="car-list">
-    <car-item v-for="car in carsList" :key="car.id" :car-data="car" />
+    <car-item v-for="car in filteredCarsList" :key="car.id" :car-data="car" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     CarItem,
   },
   computed: {
-    ...mapGetters(['carsList'])
+    ...mapGetters(['carsList', 'filteredCarsList'])
   },
 }
 </script>

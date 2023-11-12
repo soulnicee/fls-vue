@@ -1,22 +1,40 @@
 import { createStore } from "vuex";
 import { carsList } from "@/data/carsList.js";
-import { vehicleTypes, carBodyTypes, truckBodyTypes } from "@/data/filters.js";
+import { vehicleTypes, carBodyTypes} from "@/data/filters.js";
 const store =  createStore({
   state() {
     return {
       carsList: [],
       vehicleTypes:[],
       carBodyTypes:[],
-      truckBodyTypes:[]
+      filters: {
+        vehicleType: undefined,
+        bodyType: undefined,
+        brand: undefined,
+        model: undefined,
+        yearFrom: undefined,
+        yearTo: undefined,
+      },
     }
   },
   getters: {
     carsList:({carsList}) => carsList,
     vehicleTypes:({vehicleTypes}) => vehicleTypes,
     carBodyTypes:({carBodyTypes}) => carBodyTypes,
-    truckBodyTypes:({truckBodyTypes}) => truckBodyTypes,
     carBrand:({carsList}) => [...new Set(carsList.map(obj => obj.brand))],
     carModel:({carsList}) => [...new Set(carsList.map(obj => obj.model))],
+    filteredCarsList: ({ carsList, filters }) => {
+      return carsList.filter(car => {
+        return (
+          (!filters.vehicleType || car.vehicleType === filters.vehicleType) &&
+          (!filters.bodyType || car.bodyType === filters.bodyType) &&
+          (!filters.brand || car.brand === filters.brand) &&
+          (!filters.model || car.model === filters.model) &&
+          (!filters.yearFrom || car.year >= filters.yearFrom) &&
+          (!filters.yearTo || car.year <= filters.yearTo)
+        );
+      });
+    },
   },
   mutations: {
     setCarList(state, list) {
@@ -28,9 +46,12 @@ const store =  createStore({
     setCarBodyTypes(state, list) {
       state.carBodyTypes = list
     },
-    setTruckBodyTypes(state, list) {
-      state.truckBodyTypes = list
-    },
+    updateFilterValue(state, { filterName, filterValue }) {
+      state.filters = {
+        ...state.filters,
+        [filterName]: filterValue,
+      }
+    }
   },
   actions: {
     loadCarList({commit}) {
@@ -42,9 +63,9 @@ const store =  createStore({
     loadCarBodyTypes({commit}) {
       commit('setCarBodyTypes', carBodyTypes)
     },
-    loadTruckBodyTypes({commit}) {
-      commit('setTruckBodyTypes', truckBodyTypes)
-    },
+    updateFilter({commit}, {filterName, filterValue}) {
+      commit('updateFilterValue', {filterName, filterValue})
+    }
   },
   modules: {},
 });

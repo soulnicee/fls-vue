@@ -11,13 +11,12 @@ export default {
     CarManager,
   },
   methods: {
-    ...mapActions(['loadCarList', 'loadVehicleTypes', 'loadCarBodyTypes', 'loadTruckBodyTypes'])
+    ...mapActions(['loadCarList', 'loadVehicleTypes', 'loadCarBodyTypes'])
   },
   created() {
     this.loadCarList(),
       this.loadVehicleTypes(),
-      this.loadCarBodyTypes(),
-      this.loadTruckBodyTypes()
+      this.loadCarBodyTypes()
   },
 };
 </script>
