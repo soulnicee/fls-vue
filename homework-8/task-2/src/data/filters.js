@@ -12,38 +12,33 @@ export const vehicleTypes = [
 ]
 export const carBodyTypes = [
 	{
-		id: 11,
+		id: 1,
 		type: 'sedan',
 		name: 'седан'
 	},
 	{
-		id: 22,
+		id: 2,
 		type: 'minivan',
 		name: 'мінівен'
 	},
 	{
-		id: 33,
+		id: 3,
 		type: 'SUV',
 		name: 'позашляховик'
 	},
 	{
-		id: 44,
+		id: 4,
 		type: 'coupe',
 		name: 'купе'
 	},
 	{
-		id: 55,
+		id: 5,
 		type: 'hatchback',
 		name: 'хетчбек'
 	},
   {
-		id: 1,
+		id: 6,
 		type: 'wagon',
 		name: 'фургон'
-	},
-	{
-		id: 2,
-		type: 'open truck',
-		name: 'борт'
-	},
+	}
 ]
