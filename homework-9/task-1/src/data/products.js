@@ -1,5 +1,5 @@
 export const productsList = {
-  1: [
+  notebooks: [
     {
       productId: 1,
       price: 212000,
@@ -29,7 +29,7 @@ export const productsList = {
    url: 'https://rozetka.com.ua/acer-nhqk3eu001/p397147362/'
  },
   ],
-  2: [
+  tv: [
     {
       productId: 1,
       price: 800,
@@ -59,7 +59,7 @@ export const productsList = {
       url: 'https://rozetka.com.ua/366090471/p366090471/'
     },
   ],
-  3: [
+  phone: [
     {
       productId: 1,
       name:'Террариум Exo Terra Natural Medium',
@@ -89,7 +89,7 @@ export const productsList = {
       url: 'https://rozetka.com.ua/372620007/p372620007/'
     },
   ],
-  4: [
+  monitor: [
     {
       productId: 1,
       name:'Игра The Last of Us Part I для PS5',

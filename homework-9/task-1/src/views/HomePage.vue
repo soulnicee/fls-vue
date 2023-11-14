@@ -16,10 +16,9 @@ export default {
     ...mapGetters(['mainTextList'])
   },
   methods: {
-    ...mapActions(['loadProductsList', 'loadMainTextList', 'loadProductCategory'])
+    ...mapActions(['loadMainTextList', 'loadProductCategory'])
   },
   created() {
-    this.loadProductsList()
     this.loadMainTextList()
     this.loadProductCategory()
   },

@@ -6,13 +6,13 @@ import { mainTextList, productCategory } from "@/data/textData.js";
     return {
       productsList: [],
       mainTextList: [],
-      productCategory: []
+      productCategory: [],
     }
   },
   getters: {
     productsList:({productsList}) => productsList,
     mainTextList:({mainTextList}) => mainTextList,
-    productCategory:({productCategory}) => productCategory
+    productCategory:({productCategory}) => productCategory,
   },
   mutations: {
     setProductsList(state, list) {
