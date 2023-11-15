@@ -34,12 +34,6 @@ export default {
       filterObj: {}
     }
   },
-  methods: {
-    ...mapActions(['updateFilter']),
-    onReset() {
-      this.filterObj = {}
-    }
-  },
   watch: {
     filterObj: {
       handler(newValue) {
@@ -48,6 +42,13 @@ export default {
       deep: true
     }
   },
+  methods: {
+    ...mapActions('filter', ['updateFilter']),
+    onReset() {
+      this.filterObj = {}
+    }
+  },
+
 }
 </script>
 

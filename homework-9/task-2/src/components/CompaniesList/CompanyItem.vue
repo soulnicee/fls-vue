@@ -17,7 +17,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['removeCompany']),
+    ...mapActions('companies', ['removeCompany']),
     onEdit() {
       this.$router.push({
         name: 'company',

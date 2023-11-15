@@ -30,7 +30,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getCompanyById']),
+    ...mapGetters('companies', ['getCompanyById']),
     recievedCompanyId() {
       return this.$route.params.companyId
     },
@@ -38,8 +38,13 @@ export default {
       return this.recievedCompanyId ? 'Save' : 'Create'
     }
   },
+  created() {
+    if (this.recievedCompanyId) {
+      this.company = { ...this.getCompanyById(this.recievedCompanyId) }
+    }
+  },
   methods: {
-    ...mapActions(['addCompany', 'updateCompany']),
+    ...mapActions('companies', ['addCompany', 'updateCompany']),
     onAction() {
       if (!this.recievedCompanyId) {
         this.addCompany(this.company)
@@ -49,11 +54,7 @@ export default {
       })
     }
   },
-  created() {
-    if (this.recievedCompanyId) {
-      this.company = { ...this.getCompanyById(this.recievedCompanyId) }
-    }
-  },
+
 }
 </script>
 
