@@ -5,6 +5,5 @@
 // return true
 // }
 
-export function isCorrespondToFilter(company, filterObj) {
-  return Object.keys(filterObj).every(prop => !filterObj[prop] || filterObj[prop] === company[prop])
-}
+
+export var isCorrespondToFilter = (company, filterObj) => Object.keys(filterObj).every(prop => !filterObj[prop] || filterObj[prop] === company[prop])
