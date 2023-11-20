@@ -49,6 +49,22 @@
     width: 100%;
     font-size: 18px;
    }
+   &__error {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: red;
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+   }
   // .editor__button
-  &__button {}
+  &__button {
+    font-size: 24px;
+    border: 1px solid #000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: #dde071;
+    cursor: pointer;
+
+  }
 }

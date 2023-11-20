@@ -24,19 +24,22 @@
         </select>
       </div>
     </div>
+    <div v-if="isDataSelected === false" class="editor__error"> будь-ласка, зробіть вибір і натисніть кнопку нижче </div>
     <button type="button" class="editor__button" @click="onAction">{{ actionButtonTitle }}</button>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { isObjectEmpty } from "@/utilities/utils.js";
 export default {
   name: 'AssignmentsEditView',
   data() {
     return {
       assignmentData: {},
       filteredTeacherList: [],
-      filteredLessonsList: []
+      filteredLessonsList: [],
+      isDataSelected: null
     }
   },
   computed: {
@@ -72,8 +75,13 @@ export default {
   methods: {
     ...mapActions('assignments', ['addAssignment', 'updateAssignment']),
     onAction() {
+      if (isObjectEmpty(this.assignmentData)) {
+        this.isDataSelected = false
+        return
+      }
       if (!this.recievedAssignmentId) this.addAssignment(this.assignmentData)
       else this.updateAssignment(this.assignmentData)
+      this.isDataSelected = null
       this.$router.push({ name: 'assignments' })
     }
   },

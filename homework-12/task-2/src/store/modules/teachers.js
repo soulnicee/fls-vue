@@ -43,6 +43,7 @@ export default {
       state.teachersList = state.teachersList.filter((teacher) => teacher.id !== teacherId)
     },
     addTeacher(state, teacher) {
+      console.log(teacher);
       state.teachersList.push(teacher)
     },
     updateTeacher(state, teacher) {
