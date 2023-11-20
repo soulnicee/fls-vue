@@ -1,0 +1,14 @@
+.assignment {
+  grid-template-columns: 175px 175px 75px 175px 175px;
+  // .lesson__name
+  &__name {}
+  // .lesson__item
+  &__item {}
+  // .lesson__class
+  &__class {
+  }
+  // .lesson__edit-btn
+  &__edit-btn {}
+  // .lesson__delete-btn
+  &__delete-btn {}
+}

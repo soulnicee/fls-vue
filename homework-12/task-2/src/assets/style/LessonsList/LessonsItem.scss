@@ -1,0 +1,14 @@
+.lesson {
+  grid-template-columns: 150px 50px 150px 150px;
+  // .lesson__name
+  &__name {}
+  // .lesson__item
+  &__item {}
+  // .lesson__class
+  &__class {
+  }
+  // .lesson__edit-btn
+  &__edit-btn {}
+  // .lesson__delete-btn
+  &__delete-btn {}
+}

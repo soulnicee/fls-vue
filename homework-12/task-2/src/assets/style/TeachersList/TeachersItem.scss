@@ -1,0 +1,17 @@
+.teacher {
+  grid-template-columns: 150px 150px 150px 150px;
+  // .teacher__item
+  &__item {
+  }
+  // .teacher__name
+  &__name {}
+
+  // .teacher__subject
+  &__subject {}
+
+  // .teacher__edit-btn
+  &__edit-btn {}
+
+  // .teacher__delete-btn
+  &__delete-btn {}
+}

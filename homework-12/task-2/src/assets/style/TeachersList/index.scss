@@ -1,0 +1,49 @@
+@import './TeachersItem.scss';
+
+.teachers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+
+  // .teachers__title
+  &__title {}
+  // .teachers__about
+  &__about {
+    display: flex;
+    gap: 70px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    align-self: flex-start;
+    padding-left: 110px;
+  }
+
+  // .teachers__names
+  &__names {}
+
+  // .teachers__subject
+  &__subject {}
+
+  // .teachers__create-btn
+  &__create-btn {
+    font-size: 24px;
+    border: 1px solid #000;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: #fddbdb;
+  }
+}
+
+.teachers-list {
+  max-width: 800px;
+  margin: 0 auto;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  // .teachers-list__item
+  &__item {}
+}
