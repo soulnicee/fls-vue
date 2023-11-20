@@ -1,16 +1,23 @@
 <template>
-  <div class="lesson-editor">
-    <div class="lesson-editor__select"> спеціалізація <select v-model="lessonData.subjectId">
-        <option disabled selected>Оберіть предмет</option>
-        <option v-for="sebject in getSubjects" :key="sebject.id" :value="sebject.id">{{ sebject.subject }}</option>
-      </select>
+  <div class="editor">
+    <h1 class="editor__title">Встановіть уроки для класів</h1>
+    <div class="editor__selects">
+      <div class="editor__select">
+        <div class="editor__select-title">спеціалізація</div>
+        <select v-model="lessonData.subjectId">
+          <option disabled selected>Оберіть предмет</option>
+          <option v-for="sebject in getSubjects" :key="sebject.id" :value="sebject.id">{{ sebject.subject }}</option>
+        </select>
+      </div>
+      <div class="editor__select">
+        <div class="editor__select-title">клас</div>
+        <select v-model="lessonData.classId">
+          <option disabled selected>Оберіть клас</option>
+          <option v-for="classItem in getClassesList" :key="classItem.id" :value="classItem.id">{{ classItem.classTitle }}</option>
+        </select>
+      </div>
     </div>
-    <div class="lesson-editor__select"> клас <select v-model="lessonData.classId">
-        <option disabled selected>Оберіть клас</option>
-        <option v-for="classItem in getClassesList" :key="classItem.id" :value="classItem.id">{{ classItem.classTitle }}</option>
-      </select>
-    </div>
-    <button type="button" class="class" @click="onAction">{{ actionButtonTitle }}</button>
+    <button type="button" class="editor__button" @click="onAction">{{ actionButtonTitle }}</button>
   </div>
 </template>
 

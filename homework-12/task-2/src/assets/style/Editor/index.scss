@@ -1,0 +1,54 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+
+  // .editor__title
+  &__title {
+    font-size: 24px;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  // .editor__selects
+  &__selects {
+    display: flex;
+    gap: 30px;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  // .editor__select
+  &__select {
+    width: 250px;
+
+    select {
+      width: 100%;
+      font-size: 18px;
+    }
+  }
+  // .editor__select-title
+  &__select-title {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+   // .editor__label
+   &__label {}
+   // .editor__input-title
+   &__input-title {
+    text-align: center;
+    text-transform: uppercase;
+   }
+   // .editor__input
+   &__input {
+    width: 100%;
+    font-size: 18px;
+   }
+  // .editor__button
+  &__button {}
+}

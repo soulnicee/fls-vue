@@ -1,30 +1,30 @@
 <template>
-  <div class="assignment-editor">
-    <h1 class="assignment-editor__title">Встановіть призначення</h1>
-    <div class="assignment-editor__selects">
-      <div class="assignment-editor__select">
-        <div class="assignment-editor__select-title">піб</div>
+  <div class="editor">
+    <h1 class="editor__title">Встановіть призначення</h1>
+    <div class="editor__selects">
+      <div class="editor__select">
+        <div class="editor__select-title">піб</div>
         <select v-model="assignmentData.teacherId">
           <option disabled selected>Оберіть вчителя</option>
           <option v-for="teacher in filteredTeacherList" :key="teacher.id" :value="teacher.id">{{ teacher.name }}</option>
         </select>
       </div>
-      <div class="assignment-editor__select">
-        <div class="assignment-editor__select-title">спеціалізація</div>
+      <div class="editor__select">
+        <div class="editor__select-title">спеціалізація</div>
         <select v-model="assignmentData.lessonId">
           <option disabled selected>Оберіть предмет</option>
           <option v-for="lesson in filteredLessonsList" :key="lesson.id" :value="lesson.id">{{ lesson.subjectTitle }}</option>
         </select>
       </div>
-      <div class="assignment-editor__select">
-        <div class="assignment-editor__select-title">клас</div>
+      <div class="editor__select">
+        <div class="editor__select-title">клас</div>
         <select v-model="assignmentData.classId">
           <option disabled selected>Оберіть предмет</option>
           <option v-for="classItem in filteredLessonsList" :key="classItem.id" :value="classItem.id">{{ classItem.classTitle }}</option>
         </select>
       </div>
     </div>
-    <button type="button" class="button-save" @click="onAction">{{ actionButtonTitle }}</button>
+    <button type="button" class="editor__button" @click="onAction">{{ actionButtonTitle }}</button>
   </div>
 </template>
 
@@ -81,46 +81,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.assignment-editor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 10px;
-
-  &__title {
-    font-size: 24px;
-
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
-  }
-
-  &__select-title {
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  &__selects {
-    display: flex;
-    gap: 30px;
-
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
-  }
-
-  // .assignment-editor__select
-  &__select {
-    width: 250px;
-
-    select {
-      width: 100%;
-      font-size: 18px;
-    }
-  }
-}
-
-.button-save {}
-</style>
+<style lang="scss" scoped></style>
