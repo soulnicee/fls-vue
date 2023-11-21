@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/">Головна</router-link> | <router-link to="/workers">Працівники</router-link> | <router-link
-      to="/applicants">Кандидати</router-link> | <router-link to="/interviews">Співбесіди</router-link> |
+    <router-link :to="{ name: 'home' }">Головна</router-link> | <router-link :to="{ name: 'workers' }">Працівники</router-link> | <router-link
+      :to="{ name: 'applicants' }">Кандидати</router-link> | <router-link :to="{ name: 'interviews' }">Співбесіди</router-link> |
   </nav>
   <router-view />
 </template>
