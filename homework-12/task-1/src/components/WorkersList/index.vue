@@ -1,6 +1,6 @@
 <template>
   <div>
-    <worker-item />
+    <worker-item v-for="worker in workersList" :key="worker.id" :worker-data="worker" @on-worker-edit="" @on-worker-delete="" />
   </div>
 </template>
 
