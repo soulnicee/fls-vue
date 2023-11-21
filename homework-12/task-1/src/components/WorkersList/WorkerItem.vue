@@ -1,10 +1,10 @@
 <template>
-  <div class="worker">
-    <div class="worker__name">{{ workerData.name }}</div>
-    <div class="worker__profession">{{ workerData.profession }}</div>
-    <div class="worker__experience">{{ workerData.experience }}</div>
-    <button type="button" class="worker__edit" @click="$emit('onWorkerEdit', workerData.id)">Редагувати</button>
-    <button type="button" class="worker__delete" @click="$emit('onWorkerDelete', workerData.id)">Видалити</button>
+  <div class="worker universal-item">
+    <div class="worker__name universal-item__name">{{ workerData.name }}</div>
+    <div class="worker__profession universal-item__profession">{{ workerData.profession }}</div>
+    <div class="worker__experience universal-item__experience" :class="experienceLevel">{{ workerData.experience }}</div>
+    <button type="button" class="worker__edit-btn universal-item__edit-btn" @click="$emit('onWorkerEdit', workerData.id)">Редагувати</button>
+    <button type="button" class="worker__delete-btn universal-item__delete-btn" @click="$emit('onWorkerDelete', workerData.id)">Видалити</button>
   </div>
 </template>
 
@@ -16,6 +16,17 @@ export default {
       type: Object,
       required: true
     },
+  },
+  computed: {
+    experienceLevel() {
+      let exp
+      if (this.workerData.experience < 2) {
+        exp = 'junior'
+      } else if (this.workerData.experience < 5) {
+        exp = 'middle'
+      } else exp = 'senior'
+      return exp
+    }
   },
   emits: ['onWorkerEdit', 'onWorkerDelete']
 }

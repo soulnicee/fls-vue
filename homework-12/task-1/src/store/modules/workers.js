@@ -20,12 +20,20 @@ export default {
     ]
   },
   getters: {
-    
+    workersList:({workersList}) => workersList,
+    transformedWorkersList:(state, getters, rootState, rootGetters) => getters.workersList.map((item) => ({
+      ...item,
+      profession: rootGetters['getProffesionById'](item.professionId)
+    }))
   },
   mutations: {
-   
+    deleteWorker(state, workerId) {
+      state.workersList = state.workersList.filter((worker) => worker.id !== workerId)
+    }
   },
   actions: {
-    
+    deleteWorker({commit}, workerId) {
+      commit('deleteWorker', workerId)
+    }
   }
 }

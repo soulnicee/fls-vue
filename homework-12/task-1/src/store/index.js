@@ -10,7 +10,8 @@ export default createStore({
   getters: {
     aplicantsList: () => aplicantsList,
     professionsList: () => professionsList,
-    daysList: () => daysList
+    daysList: () => daysList,
+    getProffesionById:(state, getters) => (profId) => getters.professionsList.find((item) => item.id == profId).name
   },
   mutations: {},
   actions: {},
