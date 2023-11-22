@@ -1,3 +1,4 @@
+@import './reset.scss';
 @import './aplicants/';
 @import './workers/';
 @import './interviews/';
@@ -13,7 +14,8 @@
   transition: all 0.3s;
   border: 1px solid #000;
   font-size: 17px;
-  
+  align-items: center;
+  justify-content: center;
   @media (any-hover: hover){
     &:hover{
       background-color: #b7e5d8;

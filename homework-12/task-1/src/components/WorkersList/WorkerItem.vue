@@ -17,6 +17,7 @@ export default {
       required: true
     },
   },
+  emits: ['onWorkerEdit', 'onWorkerDelete'],
   computed: {
     experienceLevel() {
       let exp
@@ -28,7 +29,7 @@ export default {
       return exp
     }
   },
-  emits: ['onWorkerEdit', 'onWorkerDelete']
+
 }
 </script>
 
