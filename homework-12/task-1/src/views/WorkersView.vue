@@ -14,10 +14,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.main-list {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 50px 25px;
-}
-</style>
+<style lang="scss" scoped></style>

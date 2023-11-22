@@ -1,11 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import WorkersView from "../views/WorkersView.vue";
-import AplicantsView from "../views/AplicantsView.vue";
-import InterviewsView from "../views/InterviewsView.vue";
-import WorkersEditView from "../views/WorkersEditView.vue";
-import AplicantsEditView from "../views/AplicantsEditView.vue";
-import InterviewsEditView from "../views/InterviewsEditView.vue";
 const routes = [
   {
     path: "/",
@@ -15,32 +9,35 @@ const routes = [
   {
     path: "/workers",
     name: "workers",
-    component: WorkersView,
+    component: () => import("../views/WorkersView.vue"),
   },
   {
     path: "/workers/edit/:id?",
     name: "workers-edit",
-    component: WorkersEditView,
+    component: () => import("../views/WorkersEditView.vue"),
+    props: (route) => ({workerId: parseInt(route.params.id)})
   },
   {
     path: "/applicants",
     name: "applicants",
-    component: AplicantsView,
+    component: () => import("../views/AplicantsView.vue"),
   },
   {
     path: "/applicants/edit/:id?",
     name: "applicants-edit",
-    component: AplicantsEditView,
+    component: () => import("../views/AplicantsEditView.vue"),
+    props: (route) => ({applicantId: parseInt(route.params.id)})
   },
   {
     path: "/interviews",
     name: "interviews",
-    component: InterviewsView,
+    component: () => import("../views/InterviewsView.vue"),
   },
   {
     path: "/interviews/edit/:id?",
     name: "interviews-edit",
-    component: InterviewsEditView,
+    component: () => import("../views/InterviewsEditView.vue"),
+    props: (route) => ({interviewId: parseInt(route.params.id)})
   },
 ];
 

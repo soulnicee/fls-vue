@@ -1,11 +1,18 @@
 <template>
-  <div>
+  <div class="editor">
+    <h1 class="editor__title"></h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'WorkersEditView'
+  name: 'WorkersEditView',
+  props: {
+    workerId: {
+      type: Number,
+      required: true
+    },
+  },
 }
 </script>
 
