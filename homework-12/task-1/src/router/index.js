@@ -18,15 +18,15 @@ const routes = [
     props: (route) => ({workerId: parseInt(route.params.id)})
   },
   {
-    path: "/applicants",
-    name: "applicants",
+    path: "/aplicants",
+    name: "aplicants",
     component: () => import("../views/AplicantsView.vue"),
   },
   {
-    path: "/applicants/edit/:id?",
-    name: "applicants-edit",
+    path: "/aplicants/edit/:id?",
+    name: "aplicants-edit",
     component: () => import("../views/AplicantsEditView.vue"),
-    props: (route) => ({applicantId: parseInt(route.params.id)})
+    props: (route) => ({aplicantId: parseInt(route.params.id)})
   },
   {
     path: "/interviews",

@@ -29,7 +29,6 @@ export default {
       return exp
     }
   },
-
 }
 </script>
 
