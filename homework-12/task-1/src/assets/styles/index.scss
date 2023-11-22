@@ -1,7 +1,7 @@
-@import './reset.scss';
-@import './aplicants/';
-@import './workers/';
-@import './interviews/';
+@import '@/assets/styles/reset.scss';
+@import '@/assets/styles/aplicants/';
+@import '@/assets/styles/workers/';
+@import '@/assets/styles/interviews/';
 
 
 
@@ -58,7 +58,7 @@
 .universal-item {
   display: grid;
   gap: 10px;
-  grid-template-columns: 300px 300px 50px 150px 150px;
+  // grid-template-columns: 300px 300px 50px 150px 150px;
   text-align: center;
   padding: 5px 0px;
   transition: all 0.3s;
@@ -210,6 +210,16 @@ color: green
       }
     }
   }
+   // .editor__reset-btn
+   &__reset-btn {
+    background-color: rgb(237, 154, 245);
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgb(210, 48, 216);
+      }
+    }
+
+   }
   // .editor__action-btn
   &__action-btn {
     background-color: rgb(149, 252, 243);

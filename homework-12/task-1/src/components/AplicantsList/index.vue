@@ -2,7 +2,8 @@
   <div class="aplicants universal-list">
     <h1 class="aplicants__title universal-list__title">Наші кандидати</h1>
     <div class="aplicants__item universal-list__item">
-      <aplicants-item v-for="aplicant in transformedAplicantsList" :key="aplicant.id" :aplicant-data="aplicant" @on-aplicant-edit="onAplicantEdit"
+      <aplicants-item
+v-for="aplicant in transformedAplicantsList" :key="aplicant.id" :aplicant-data="aplicant" @on-aplicant-edit="onAplicantEdit"
         @on-aplicant-delete="deleteAplicant($event)" />
     </div>
     <router-link :to="{ name: 'aplicants-edit' }" class="aplicants__add-btn universal-list__add-btn">Додати кандидата</router-link>

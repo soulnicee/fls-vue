@@ -4,17 +4,17 @@
     <div class="editor__items">
       <div class="editor__item">
         <label class="editor__label" for="aplicant-name">ПІБ кандидата</label>
-        <input v-model="aplicantData.name" id="aplicant-name" autocomplete="off" type="text" class="editor__input">
+        <input id="aplicant-name" v-model="aplicantData.name" autocomplete="off" type="text" class="editor__input">
       </div>
       <div class="editor__item">
         <label class="editor__label" for="aplicant-profession">Професія</label>
-        <select v-model="aplicantData.professionId" id="aplicant-profession" class="editor__select">
+        <select id="aplicant-profession" v-model="aplicantData.professionId" class="editor__select">
           <option v-for="prof in professionsList" :key="prof.id" :value="prof.id" class="editor__option">{{ prof.name }}</option>
         </select>
       </div>
       <div class="editor__item">
         <label class="editor__label" for="aplicant-exp">Досвід роботи на позиції</label>
-        <input v-model="aplicantData.experience" id="aplicant-exp" autocomplete="off" type="number" class="editor__input">
+        <input id="aplicant-exp" v-model="aplicantData.experience" autocomplete="off" type="number" class="editor__input">
       </div>
     </div>
     <div v-if="isDataSelected === false" class="editor__error"> дані не введено </div>

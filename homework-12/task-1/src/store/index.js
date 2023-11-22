@@ -1,7 +1,7 @@
 import { createStore } from "vuex"
-import workers from "./modules/workers.js"
-import aplicants from "./modules/aplicants.js"
-import interviews from "./modules/interviews.js"
+import workers from "@/store/modules/workers.js"
+import aplicants from "@/store/modules/aplicants.js"
+import interviews from "@/store/modules/interviews.js"
 import { professionsList } from "@/data/professions.js";
 import { daysList } from "@/data/days.js";
 export default createStore({
@@ -9,7 +9,8 @@ export default createStore({
   getters: {
     professionsList: () => professionsList,
     daysList: () => daysList,
-    getProfessionById:(state, getters) => (profId) => getters.professionsList.find((item) => item.id == profId).name
+    getProfessionById:(state, getters) => (profId) => getters.professionsList.find((item) => item.id == profId).name,
+    getDayById:(state, getters)=> (dayId) => getters.daysList.find((item) => item.id == dayId).name
   },
   mutations: {},
   actions: {},

@@ -1,1 +1,10 @@
-@import './interviewsItem.scss';
+@import '@/assets/styles/interviews/interviewsItem.scss';
+
+.interviews {
+  // .interviews__title
+  &__title {}
+  // .interviews__item
+  &__item {}
+  // .interviews__add-btn
+  &__add-btn {}
+}

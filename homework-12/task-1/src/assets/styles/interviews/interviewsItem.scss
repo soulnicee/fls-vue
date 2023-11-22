@@ -1,0 +1,13 @@
+.interview {
+  grid-template-columns: 300px 300px 150px 150px 150px;
+  // .interview__worker-name
+  &__worker-name {}
+  // .interview__aplicant-name
+  &__aplicant-name {}
+  // .interview__day-name
+  &__day-name {}
+  // .interview__edit-btn
+  &__edit-btn {}
+  // .interview__delete-btn
+  &__delete-btn {}
+}
