@@ -1,3 +1,4 @@
+import { updateElement } from "@/store/helpers.js";
 export default {
   namespaced: true,
   state: {
@@ -23,17 +24,33 @@ export default {
     workersList:({workersList}) => workersList,
     transformedWorkersList:(state, getters, rootState, rootGetters) => getters.workersList.map((item) => ({
       ...item,
-      profession: rootGetters['getProffesionById'](item.professionId)
-    }))
+      profession: rootGetters['getProfessionById'](item.professionId)
+    })),
+    getWorkerById:(state, getters)=> (workerId) => getters.transformedWorkersList.find((item) => item.id === workerId)
   },
   mutations: {
     deleteWorker(state, workerId) {
       state.workersList = state.workersList.filter((worker) => worker.id !== workerId)
+    },
+    addNewWorker(state, workerData) {
+      state.workersList.push(workerData)
+    },
+    updateCurrentWorker(state, workerData) {
+      updateElement(state.workersList, workerData)
     }
   },
   actions: {
     deleteWorker({commit}, workerId) {
       commit('deleteWorker', workerId)
+    },
+    addNewWorker({commit}, workerData) {
+      commit('addNewWorker', {
+        id: new Date().getTime(),
+        ...workerData
+      })
+    },
+    updateCurrentWorker({commit}, workerData) {
+      commit('updateCurrentWorker', workerData)
     }
   }
 }

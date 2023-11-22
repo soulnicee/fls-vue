@@ -11,6 +11,49 @@
   max-width: 1200px;
   padding: 50px 25px;
 }
+//-------
+
+.universal-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px;
+
+  // .universal-list__title
+  &__title {
+    align-self: center;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  // .universal-list__item
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+
+  // .universal-list__add-btn
+  &__add-btn {
+    align-self: flex-start;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 10px 15px;
+    background-color: rgb(149, 252, 243);
+    font-size: 18px;
+    color: #000;
+    transition: all 0.3s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        border: 2px solid #db7878;
+      }
+    }
+  }
+}
+
+//------
 
 .universal-item {
   display: grid;
@@ -65,6 +108,7 @@
   }
 }
 
+//-----
 
 .junior {
 color: red;
@@ -75,4 +119,104 @@ color: blueviolet;
 
 .senior {
 color: green
+}
+
+//-------------
+
+.editor {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 50px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // .editor__title
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+  // .editor__items
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  // .editor__item
+  &__item {
+    text-align: center;
+  }
+  &__label {
+    color: rgb(0, 60, 255);
+    display: inline-block;
+    font-size: 20px;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+  // .editor__input
+  &__input {
+    width: 100%;
+    font-size: 18px;
+    height: 30px;
+    padding: 0px 10px;
+  }
+  // .editor__select
+  &__select {
+    width: 100%;
+    font-size: 18px;
+    height: 30px;
+    padding: 0px 10px;
+  }
+  // .editor__option
+  &__option {
+    padding: 0px 10px;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+  // .editor__error
+  &__error {
+    &:not(:last-child) {
+      margin-bottom: 30px;
+      color: red;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+  }
+  // .editor__buttons
+  &__buttons {
+    display: flex;
+    gap: 20px;
+  }
+  &__btn {
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #000;
+    transition: all 0.3s;
+  }
+  // .editor__back-btn
+  &__back-btn {
+    background-color: rgb(240, 197, 140);
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgb(216, 143, 48);
+      }
+    }
+  }
+  // .editor__action-btn
+  &__action-btn {
+    background-color: rgb(149, 252, 243);
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgb(53, 240, 224);
+      }
+    }
+  }
 }

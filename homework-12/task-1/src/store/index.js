@@ -11,7 +11,7 @@ export default createStore({
     aplicantsList: () => aplicantsList,
     professionsList: () => professionsList,
     daysList: () => daysList,
-    getProffesionById:(state, getters) => (profId) => getters.professionsList.find((item) => item.id == profId).name
+    getProfessionById:(state, getters) => (profId) => getters.professionsList.find((item) => item.id == profId).name
   },
   mutations: {},
   actions: {},
