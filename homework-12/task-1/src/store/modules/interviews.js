@@ -15,6 +15,7 @@ export default {
       ...item,
       workerName: rootGetters['workers/getWorkerById'](item.workerId).name,
       aplicantName: rootGetters['aplicants/getAplicantById'](item.aplicantId).name,
+      professionName: rootGetters['getProfessionById'](item.workerId),
       dayName: rootGetters['getDayById'](item.dayId)
     })),
   },

@@ -5,13 +5,15 @@
       <div class="editor__item">
         <label class="editor__label" for="interview-worker">Працівник</label>
         <select id="interview-worker" v-model="interviewData.workerId" class="editor__select">
-          <option v-for="item in filteredWorkersList" :key="item.id" :value="item.id" class="editor__option">{{ item.name }}</option>
+          <option v-for="item in filteredWorkersList" :key="item.id" :value="item.id" class="editor__option">{{ item.name }} - {{
+            getProfessionById(item.professionId) }}</option>
         </select>
       </div>
       <div class="editor__item">
         <label class="editor__label" for="interview-aplicant">Кандидат</label>
         <select id="interview-aplicant" v-model="interviewData.aplicantId" class="editor__select">
-          <option v-for="item in filteredAplicantsList" :key="item.id" :value="item.id" class="editor__option">{{ item.name }}</option>
+          <option v-for="item in filteredAplicantsList" :key="item.id" :value="item.id" class="editor__option">{{ item.name }} - {{
+            getProfessionById(item.professionId) }}</option>
         </select>
       </div>
       <div class="editor__item">
@@ -28,7 +30,6 @@
       <button type="button" class="editor__btn editor__action-btn" @click="onAction">{{ dynamicButtonTitle }}</button>
     </div>
   </div>
-  <button type="button" class="class" @click="ok">Текст</button>
 </template>
 
 <script>
@@ -51,7 +52,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['daysList']),
+    ...mapGetters(['daysList', 'getProfessionById']),
     ...mapGetters('workers', ['workersList']),
     ...mapGetters('aplicants', ['aplicantsList']),
     ...mapGetters('interviews', ['getInterviewsById']),
@@ -75,11 +76,9 @@ export default {
     },
   },
   created() {
-    this.interviewData = { ...this.getInterviewsById(this.interviewId) };
-
-    // Фільтруємо списки для відображення тільки відповідних працівників та кандидатів
-    this.filteredWorkersList = filterList(this.aplicantsList, this.interviewData.aplicantId, this.workersList);
-    this.filteredAplicantsList = filterList(this.workersList, this.interviewData.workerId, this.aplicantsList);
+    this.interviewData = { ...this.getInterviewsById(this.interviewId) }
+    this.filteredWorkersList = filterList(this.aplicantsList, this.interviewData.aplicantId, this.workersList)
+    this.filteredAplicantsList = filterList(this.workersList, this.interviewData.workerId, this.aplicantsList)
   },
   methods: {
     onReset() {
@@ -87,10 +86,6 @@ export default {
       this.filteredWorkersList = this.workersList
       this.filteredAplicantsList = this.aplicantsList
       this.isDataSelected = null
-    },
-    ok() {
-      console.log(this.interviewData);
-      console.log(this.interviewId);
     },
     ...mapActions('interviews', ['addNewInterview', 'updateCurrentInterview']),
     onAction() {
@@ -102,7 +97,7 @@ export default {
         id: this.interviewId,
         workerId: this.interviewData.workerId,
         aplicantId: this.interviewData.aplicantId,
-        dayId: this.interviewData.dayId
+        dayId: this.interviewData.dayId,
       })
       this.isDataSelected = null
       this.$router.push({ name: 'interviews' })

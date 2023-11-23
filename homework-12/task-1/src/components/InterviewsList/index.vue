@@ -2,12 +2,12 @@
   <div class="interviews universal-list">
     <h1 class="interviews__title universal-list__title">Співбесіди</h1>
     <div class="interviews__item universal-list__item">
-      <interviews-item
-v-for="interview in transformedInterviewsList" :key="interview.id" :interview-data="interview"
+      <interviews-item v-for="interview in transformedInterviewsList" :key="interview.id" :interview-data="interview"
         @on-interview-edit="onInterviewEdit" @on-interview-delete="deleteInterview($event)" />
     </div>
     <router-link :to="{ name: 'interviews-edit' }" class="interviews__add-btn universal-list__add-btn">Назначити співбесіду</router-link>
   </div>
+  <button type="button" class="class" @click="ok">Текст</button>
 </template>
 
 <script>
@@ -22,6 +22,9 @@ export default {
     ...mapGetters('interviews', ['transformedInterviewsList'])
   },
   methods: {
+    ok() {
+      console.log(this.transformedInterviewsList);
+    },
     ...mapActions('interviews', ['deleteInterview']),
     onInterviewEdit(id) {
       this.$router.push({
