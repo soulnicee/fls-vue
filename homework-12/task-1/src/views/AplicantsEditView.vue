@@ -13,7 +13,7 @@
         </select>
       </div>
       <div class="editor__item">
-        <label class="editor__label" for="aplicant-exp">Досвід роботи на позиції</label>
+        <label class="editor__label" for="aplicant-exp">Досвід</label>
         <input id="aplicant-exp" v-model="aplicantData.experience" autocomplete="off" type="number" class="editor__input">
       </div>
     </div>

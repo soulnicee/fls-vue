@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import WorkersList from "@/components/WorkersList/";
+import WorkersList from "@/components/WorkersList.vue";
 export default {
   name: 'WorkersView',
   components: {

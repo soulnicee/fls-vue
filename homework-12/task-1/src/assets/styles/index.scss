@@ -1,4 +1,5 @@
 @import '@/assets/styles/reset.scss';
+@import '@/assets/styles/listItem.scss';
 @import '@/assets/styles/aplicants/';
 @import '@/assets/styles/workers/';
 @import '@/assets/styles/interviews/';
@@ -55,58 +56,7 @@
 
 //------
 
-.universal-item {
-  display: grid;
-  gap: 10px;
-  // grid-template-columns: 300px 300px 50px 150px 150px;
-  text-align: center;
-  padding: 5px 0px;
-  transition: all 0.3s;
-  border: 1px solid #000;
-  font-size: 17px;
-  align-items: center;
-  justify-content: center;
-  @media (any-hover: hover){
-    &:hover{
-      background-color: #b7e5d8;
-    }
-  }
-  &:not(:last-child) {
-    margin-bottom: 5px;
-  }
-  button {
-    cursor: pointer;
-    font-size: 16px;
-  }
-  // .universal-item__name
-  &__name {
-    font-weight: 500;
-  }
-  // .universal-item__profession
-  &__profession {
-    font-weight: 600;
-    font-size: 18px;
-  }
-  // .universal-item__experience
-  &__experience {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  // .universal-item__edit-btn
-  &__edit-btn {
-    @media (any-hover: hover){
-      &:hover{
-        background-color: #d1e668;
-      }
-    }
-  }
-  // .universal-item__delete-btn
-  &__delete-btn {
-    &:hover{
-      background-color: #e68c68;
-    }
-  }
-}
+
 
 //-----
 

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AplicantsList from "@/components/AplicantsList/";
+import AplicantsList from "@/components/AplicantsList.vue";
 export default {
   name: 'AplicantsView',
   components: {
