@@ -10,7 +10,17 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    // component: () => import(/* webpackChunkName: "login" */ "../views/LoginView.vue"),
+    component: () => import(/* webpackChunkName: "login" */ "../views/LoginView.vue"),
+  },
+  {
+    path: "/lessons",
+    name: "lessons",
+    component: () => import(/* webpackChunkName: "lessons" */ "../views/LessonsView.vue"),
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: () => import(/* webpackChunkName: "404" */ "../views/PageNotFoundView.vue"),
   },
 ];
 
