@@ -8,7 +8,8 @@
       </li>
     </ol>
     <div v-else class="empty-list">Сталася помилка. Зачекайте трошки!</div>
-    <button type="button" class="subjects__btn">Підтвердити вибір</button>
+    <div v-if="errorMessage" class="empty-list">{{ errorMessage }}</div>
+    <button type="button" class="subjects__btn" @click="click">Підтвердити вибір</button>
   </div>
 </template>
 
@@ -18,11 +19,37 @@ export default {
   name: 'SubjectsView',
   data() {
     return {
-      selectedSubjects: []
+      selectedSubjects: [],
+      errorMessage: ''
     }
   },
   computed: {
-    ...mapGetters('subjects', ['subjectsList'])
+    ...mapGetters('subjects', ['subjectsList']),
+    errorMessege() {
+      return !this.subjectsList.length ? 'Сталася помилка. Зачекайте трошки!' : 'Потрібно вибрати принаймні 1 урок'
+    },
+
+  },
+  methods: {
+    showError() {
+      this.errorMessage = 'Потрібно вибрати принаймні 1 урок'
+      setTimeout(() => {
+        this.errorMessage = ''
+      }, 5000);
+    },
+    click() {
+      if (this.selectedSubjects.length) {
+        this.$router.push({
+          name: 'select_teachers',
+          params: {
+            lessonsId: this.selectedSubjects
+          }
+        })
+      } else {
+        this.showError()
+      }
+      console.log(this.selectedSubjects);
+    }
   },
 }
 </script>

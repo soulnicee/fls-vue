@@ -18,6 +18,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "lessons" */ "../views/SubjectsView.vue"),
   },
   {
+    path: "/lessons/:lessonId+",
+    name: "select_teachers",
+    props: (route) => ({lessonsId: route.params.lessonId}),
+    component: () => import(/* webpackChunkName: "lessons" */ "../views/TeachersView.vue"),
+  },
+  {
     path: "/404",
     name: "404",
     component: () => import(/* webpackChunkName: "404" */ "../views/PageNotFoundView.vue"),
