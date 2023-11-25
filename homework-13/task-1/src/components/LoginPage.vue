@@ -9,11 +9,11 @@
       </div>
       <div class="login__item">
         <label for="login-pass">Введіть пароль</label>
-        <input id="login-pass" v-model="userData.password" autocomplete="off" type="text" class="login__input">
+        <input id="login-pass" v-model="userData.password" autocomplete="off" type="password" class="login__input">
       </div>
     </div>
+    <button type="button" class="login__btn" @click="onUserAuth">Авторизуватися</button>
   </div>
-  <button type="button" class="login__btn" @click="onUserAuth">Авторизуватися</button>
 </template>
 
 <script>
