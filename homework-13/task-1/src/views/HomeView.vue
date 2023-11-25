@@ -1,14 +1,14 @@
 <template>
-  <div class="home">
-  </div>
+  <home-page />
 </template>
 
 <script>
-
+import HomePage from "@/components/HomePage.vue";
 
 export default {
   name: "HomeView",
   components: {
+    HomePage
   },
 };
 </script>

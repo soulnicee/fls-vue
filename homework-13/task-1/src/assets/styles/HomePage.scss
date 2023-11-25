@@ -1,0 +1,20 @@
+.home {
+  padding: 25px 15px;
+  text-align: center;
+
+  // .home__title
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  // .home__text
+  &__text {
+    font-size: 18px;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
