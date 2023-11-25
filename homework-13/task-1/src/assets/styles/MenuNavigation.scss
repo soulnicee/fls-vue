@@ -1,0 +1,37 @@
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 150px;
+  font-size: 18px;
+
+  &__items {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.login {
+
+  // .login__enter-btn
+  &__enter-btn {}
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  // .user__greetings
+  &__greetings {}
+
+  // .user__exit-btn
+  &__exit-btn {
+    padding: 5px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    border: 2px dotted plum;
+  }
+}

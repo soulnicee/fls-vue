@@ -1,5 +1,8 @@
 import { createStore } from "vuex";
 import login from "@/store/modules/login.js";
+import subjects from "@/store/modules/subjects.js";
+import teachers from "@/store/modules/teachers.js";
+import lessons from "@/store/modules/lessons.js";
 export default createStore({
   state: {
     
@@ -12,6 +15,9 @@ export default createStore({
   mutations: {},
   actions: {},
   modules: {
-    login
+    login,
+    subjects,
+    teachers,
+    lessons
   },
 });
