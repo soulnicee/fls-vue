@@ -5,7 +5,8 @@ export default {
    
   },
   getters: {
-    subjectsList:() => subjectsList
+    subjectsList:() => subjectsList,
+    getSubjectById:(state, getters) => (subjectId) => getters.subjectsList.find((item) => item.id == subjectId)
   },
   mutations: {
     

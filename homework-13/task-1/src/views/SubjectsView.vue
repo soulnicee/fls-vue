@@ -9,7 +9,7 @@
     </ol>
     <div v-else class="empty-list">Сталася помилка. Зачекайте трошки!</div>
     <div v-if="errorMessage" class="empty-list">{{ errorMessage }}</div>
-    <button type="button" class="subjects__btn" @click="click">Підтвердити вибір</button>
+    <button type="button" class="subjects__btn" @click="confirmSelected">Підтвердити вибір</button>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
         this.errorMessage = ''
       }, 5000);
     },
-    click() {
+    confirmSelected() {
       if (this.selectedSubjects.length) {
         this.$router.push({
           name: 'select_teachers',
@@ -48,7 +48,6 @@ export default {
       } else {
         this.showError()
       }
-      console.log(this.selectedSubjects);
     }
   },
 }

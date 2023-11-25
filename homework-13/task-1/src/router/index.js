@@ -18,9 +18,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "lessons" */ "../views/SubjectsView.vue"),
   },
   {
-    path: "/lessons/:lessonId+",
+    path: "/lessons/:lessonsId+",
     name: "select_teachers",
-    props: (route) => ({lessonsId: route.params.lessonId}),
+    props: (route) => ({selectedSubjectsList: route.params.lessonsId}),
     component: () => import(/* webpackChunkName: "lessons" */ "../views/TeachersView.vue"),
   },
   {
