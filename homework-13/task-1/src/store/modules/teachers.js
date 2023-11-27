@@ -5,9 +5,8 @@ export default {
 
   },
   getters: {
-    
     teachersList:() => teachersList,
-    
+    filteredTeachersList:(state, getters) => (selectedSubjectId) => getters.teachersList.filter((item) => item.subjectId === selectedSubjectId)
   },
   mutations: {
     

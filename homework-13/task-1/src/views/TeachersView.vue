@@ -2,17 +2,18 @@
   <div class="teachers">
     <h1 class="teachers__title">Вибір вчителів</h1>
     <ol class="teachers__list">
-      <li v-for="item in selectedSubjectsList" :key="item" class="teachers__item-container">
+      <li v-for="subjectId in selectedSubjectsList" :key="subjectId" class="teachers__item-container">
         <div class="teachers__item">
-          <label :for="item" class="teacher-select__label"></label>
-          <select :id="item">
-            <option v-for="teacher in filteredTeachersList" :key="teacher.id" value="1" selected>{{ teacher.name }}</option>
+          <label :for="subjectId" class="teacher-select__label">{{ getSubjectById(subjectId).name }}</label>
+          <select :id="subjectId">
+            <option disabled selected>Оберіть вчителя</option>
+            <option v-for="teacher in filteredTeachersList(subjectId)" :key="teacher.id" :value="teacher.id">{{ teacher.name }} </option>
           </select>
         </div>
       </li>
     </ol>
-    <!-- <div v-if="errorMessage" class="empty-list">{{ errorMessage }}</div>
-    <button type="button" class="subjects__btn" @click="click">Підтвердити вибір</button> -->
+    <!-- <div v-if="errorMessage" class="empty-list">{{ errorMessage }}</div> -->
+    <button type="button" class="subjects__btn" @click="click">Підтвердити вибір</button>
   </div>
 </template>
 
@@ -27,7 +28,13 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('teachers', ['filteredTeachersList'])
+    ...mapGetters('teachers', ['filteredTeachersList']),
+    ...mapGetters('subjects', ['getSubjectById'])
+  },
+  methods: {
+    click() {
+      console.log(this.filteredTeachersList(this.selectedSubjectsList[0]));
+    }
   },
 }
 </script>

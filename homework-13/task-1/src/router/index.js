@@ -20,7 +20,7 @@ const routes = [
   {
     path: "/lessons/:lessonsId+",
     name: "select_teachers",
-    props: (route) => ({selectedSubjectsList: route.params.lessonsId}),
+    props: (route) => ({selectedSubjectsList: route.params.lessonsId.map((item) => parseInt(item))}),
     component: () => import(/* webpackChunkName: "lessons" */ "../views/TeachersView.vue"),
   },
   {
