@@ -24,6 +24,20 @@ const routes = [
     component: () => import(/* webpackChunkName: "lessons" */ "../views/TeachersView.vue"),
   },
   {
+    path: "/lessons/:lessonPair+/",
+    name: "lessons_list",
+    props: (route) => {
+      const lessonPair = route.params.lessonPair
+      const lessonId = lessonPair.map(pair => parseInt(pair.split('-')[0]));
+      const teacherId = lessonPair.map(pair => parseInt(pair.split('-')[1]));
+      return {
+        selectedSubjectId: lessonId,
+        selectedTeacherId: teacherId,
+      }
+    },
+    component: () => import(/* webpackChunkName: "lessons" */ "../views/LessonsView.vue"),
+  },
+  {
     path: "/404",
     name: "404",
     component: () => import(/* webpackChunkName: "404" */ "../views/PageNotFoundView.vue"),
