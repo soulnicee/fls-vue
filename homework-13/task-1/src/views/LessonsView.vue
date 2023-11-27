@@ -8,7 +8,6 @@
         <button type="button" class="lessons__remove-btn" @click="removeLessonPair(lessonPair.lessonPairId)">Видалити</button>
       </li>
     </ol>
-    <!-- <div v-if="errorMessage" class="empty-list">{{ errorMessage }}</div> -->
   </div>
 </template>
 

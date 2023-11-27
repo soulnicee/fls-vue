@@ -1,0 +1,28 @@
+.lessons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // .lessons__title
+  &__title {
+    text-align: center;
+  }
+  // .lessons__list
+  &__list {
+    max-width: 800px;
+  }
+  // .lessons__item
+  &__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 100px;
+    gap: 15px;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+  // .lessons__subject
+  &__subject {}
+  // .lessons__teacher
+  &__teacher {}
+  // .lessons__remove-btn
+  &__remove-btn {}
+}
