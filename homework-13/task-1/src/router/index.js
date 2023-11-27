@@ -26,15 +26,15 @@ const routes = [
   {
     path: "/lessons/:lessonPair+/",
     name: "lessons_list",
-    props: (route) => {
-      const lessonPair = route.params.lessonPair
-      const lessonId = lessonPair.map(pair => parseInt(pair.split('-')[0]));
-      const teacherId = lessonPair.map(pair => parseInt(pair.split('-')[1]));
-      return {
-        selectedSubjectId: lessonId,
-        selectedTeacherId: teacherId,
-      }
-    },
+    // props: (route) => {
+    //   const lessonPair = route.params.lessonPair
+    //   const lessonId = lessonPair.map(pair => parseInt(pair.split('-')[0]));
+    //   const teacherId = lessonPair.map(pair => parseInt(pair.split('-')[1]));
+    //   return {
+    //     selectedSubjectId: lessonId,
+    //     selectedTeacherId: teacherId,
+    //   }
+    // },
     component: () => import(/* webpackChunkName: "lessons" */ "../views/LessonsView.vue"),
   },
   {

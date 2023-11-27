@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'TeachersView',
   props: {
@@ -38,6 +38,7 @@ export default {
     ...mapGetters('subjects', ['getSubjectById'])
   },
   methods: {
+    ...mapActions('lessons', ['addLessonPair']),
     showError() {
       this.errorMessage = 'Потрібно вибрати вчителів'
       setTimeout(() => {
@@ -47,8 +48,12 @@ export default {
     confirmSelected() {
       let selectedLessonsPairIdList = Object.entries(this.selectedTeachers)
       if (this.selectedSubjectsList.length === selectedLessonsPairIdList.length) {
-        console.log(selectedLessonsPairIdList);
         const lessonPair = selectedLessonsPairIdList.map(([subjectId, teacherId]) => `${subjectId}-${teacherId}`)
+        const pairForAddToList = selectedLessonsPairIdList.map(([subjectId, teacherId]) => ({
+          subjectId: parseInt(subjectId),
+          teacherId: teacherId
+        }))
+        this.addLessonPair(pairForAddToList)
         this.$router.push({
           name: 'lessons_list',
           params: {
