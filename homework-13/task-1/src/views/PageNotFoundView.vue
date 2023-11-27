@@ -1,9 +1,9 @@
 <template>
-  <div>
-  </div>
+  <div> сторінка не знайдена </div>
 </template>
 
 <script>
+
 export default {
   name: 'PageNotFoundView'
 }
