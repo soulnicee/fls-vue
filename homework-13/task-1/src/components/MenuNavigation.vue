@@ -18,7 +18,7 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'MenuNavigation',
   computed: {
-    ...mapGetters('login', ['userData', 'isAuth'])
+    ...mapGetters(['userData', 'isAuth'])
   },
   watch: {
     isAuth(newValue) {
@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('login', ['setUserData']),
+    ...mapActions(['setUserData']),
     onExit() {
       this.setUserData({})
       this.$router.push({

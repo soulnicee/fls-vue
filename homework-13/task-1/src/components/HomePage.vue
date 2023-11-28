@@ -11,7 +11,7 @@ import { mapGetters } from "vuex";
 export default {
   name: 'HomePage',
   computed: {
-    ...mapGetters('login', ['isAuth', 'userData']),
+    ...mapGetters(['isAuth', 'userData']),
     title() {
       return this.isAuth ? `${this.userData.login}, вітаємо на сайті школи!` : 'Вітаємо на сайті школи!'
     },

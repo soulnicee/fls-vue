@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('login', ['setUserData']),
+    ...mapActions(['setUserData']),
     isDataFilled(userData) {
       return userData.login && userData.password ? true : false
     },
