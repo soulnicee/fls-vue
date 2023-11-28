@@ -1,4 +1,4 @@
-import {  deleteElement, updateElement, getElementById } from "@/store/helpers.js";
+import {  deleteElement, updateElement, getElementById, deleteInterviewByWorkerId, deleteInterviewByAplicantId } from "@/store/helpers.js";
 export default {
   namespaced: true,
   state: {
@@ -23,6 +23,12 @@ export default {
     deleteInterview(state, interviewId) {
       state.interviewsList = deleteElement(state.interviewsList, interviewId)
     },
+    deleteInterviewWorkerId(state, workerId) {
+      state.interviewsList = deleteInterviewByWorkerId(state.interviewsList, workerId)
+    },
+    deleteInterviewAplicantId(state, aplicantId) {
+      state.interviewsList = deleteInterviewByAplicantId(state.interviewsList, aplicantId)
+    },
     addNewInterview(state, interviewData) {
       state.interviewsList.push(interviewData)
     },
@@ -33,6 +39,12 @@ export default {
   actions: {
     deleteInterview({commit}, interviewId) {
       commit('deleteInterview', interviewId)
+    },
+    deleteInterviewWorkerId({commit}, workerId) {
+      commit('deleteInterviewWorkerId', workerId)
+    },
+    deleteInterviewAplicantId({commit}, aplicantId) {
+      commit('deleteInterviewAplicantId', aplicantId)
     },
     addNewInterview({commit}, interviewData) {
       commit('addNewInterview', {

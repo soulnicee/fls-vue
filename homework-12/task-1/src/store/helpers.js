@@ -14,3 +14,10 @@ export const getElementById = (elementsList, elementId) => elementsList.find((it
 export function deleteElement(elementsList, elementId) {
   return elementsList.filter((item) => item.id !== elementId)
 }
+
+export function deleteInterviewByWorkerId(elementsList, elementId) {
+  return elementsList.filter((item) => item.workerId !== elementId)
+}
+export function deleteInterviewByAplicantId(elementsList, elementId) {
+  return elementsList.filter((item) => item.aplicantId !== elementId)
+}

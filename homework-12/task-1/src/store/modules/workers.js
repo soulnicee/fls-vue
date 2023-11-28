@@ -37,8 +37,9 @@ export default {
     }
   },
   actions: {
-    deleteWorker({commit}, workerId) {
+    deleteWorker({commit, dispatch}, workerId) {
       commit('deleteWorker', workerId)
+      dispatch('interviews/deleteInterviewWorkerId', workerId, {root: true})
     },
     addNewWorker({commit}, workerData) {
       commit('addNewWorker', {

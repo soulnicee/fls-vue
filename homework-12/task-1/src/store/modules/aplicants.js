@@ -37,8 +37,9 @@ export default {
     }
   },
   actions: {
-    deleteAplicant({commit}, aplicantId) {
+    deleteAplicant({commit, dispatch}, aplicantId) {
       commit('deleteAplicant', aplicantId)
+      dispatch('interviews/deleteInterviewAplicantId', aplicantId, {root: true})
     },
     addNewAplicant({commit}, aplicantData) {
       commit('addNewAplicant', {
