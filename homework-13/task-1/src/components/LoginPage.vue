@@ -42,6 +42,11 @@ export default {
     },
     onUserAuth() {
       this.isDataFilled(this.userData) ? this.setUserData(this.userData) : this.genereteError()
+      if (this.$route.query.redirect) {
+        this.$router.push({
+          path: this.$route.query.redirect
+        })
+      } else this.$router.push({ name: 'home' })
       this.userData = {
         login: '',
         password: ''

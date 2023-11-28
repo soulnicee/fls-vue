@@ -9,7 +9,7 @@ export default {
     isAuth:({isAuth}) => isAuth
   },
   mutations: {
-    setUserData(state, userData) {
+    setUserData(state, userData) {      
       state.userData = userData
       state.isAuth = !state.isAuth
     }
