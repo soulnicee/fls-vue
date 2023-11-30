@@ -1,6 +1,6 @@
 <template>
   <div>
-    <card-list :items-list="productsList" />
+    <card-list :items-list="vendorsList" />
   </div>
 </template>
 
@@ -8,12 +8,12 @@
 import CardList from '@/components/CardList.vue';
 import { mapGetters } from "vuex";
 export default {
-  name: 'ProductsView',
+  name: 'VendorsView',
   components: {
     CardList,
   },
   computed: {
-    ...mapGetters('products', ['productsList'])
+    ...mapGetters('vendors', ['vendorsList'])
   },
 }
 </script>

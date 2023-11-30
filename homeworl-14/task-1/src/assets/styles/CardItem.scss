@@ -1,0 +1,35 @@
+.card {
+  // .card__container
+  &__container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  // .card__picture
+  &__picture {
+    max-width: 100px;
+  }
+  // .card__image
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+  // .card__title
+  &__title {}
+  // .card__about
+  &__about {}
+  // .card__price
+  &__price {}
+  // .card__icons
+  &__icons {
+    display: flex;
+  }
+  // .card__icon
+  &__icon {
+    max-width: 25px;
+  }
+  // .card__button
+  &__button {}
+}

@@ -1,0 +1,14 @@
+.list {
+
+  // .list__container
+  &__container {}
+
+  // .list__title
+  &__title {}
+
+  // .list__cards
+  &__cards {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -7,7 +7,7 @@ export const productsList = [
   },
   {
     id:2,
-    imageSrc: 'https://content.rozetka.com.ua/goods/images/big/295701523.jpg',
+    imageSrc: 'https://content.rozetka.com.ua/goods/images/big/193820805.png',
     title: 'Ковбаса',
     price:'300',
   },

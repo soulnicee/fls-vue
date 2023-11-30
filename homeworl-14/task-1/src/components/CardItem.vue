@@ -7,7 +7,7 @@
       <div class="card__title">{{ cardData.title }}</div>
       <div class="card__about">
         <slot>
-          <div class="card__price">{{ cardData.price }}</div>
+          <div class="card__price">{{ cardData.price }} грн.</div>
         </slot>
       </div>
       <button type="button" class="card__button">Купити</button>
