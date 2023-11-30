@@ -46,8 +46,8 @@ export default {
     confirmSelected() {
       let selectedLessonsPairIdList = Object.entries(this.selectedTeachers)
       if (this.selectedSubjectsList.length === selectedLessonsPairIdList.length) {
-        const lessonPair = selectedLessonsPairIdList.map(([subjectId, teacherId]) => `${subjectId}-${teacherId}`)
-        const pairForAddToList = selectedLessonsPairIdList.map(([subjectId, teacherId]) => ({
+        const lessonPair = selectedLessonsPairIdList.map(({ 0: subjectId, 1: teacherId }) => `${subjectId}-${teacherId}`)
+        const pairForAddToList = selectedLessonsPairIdList.map(({ 0: subjectId, 1: teacherId }) => ({
           subjectId: parseInt(subjectId),
           teacherId: teacherId
         }))
