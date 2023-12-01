@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <card-list :items-list="vendorsList" />
-  </div>
+  <main-master-page>
+    <div>
+      <card-list :items-list="vendorsList" />
+    </div>
+  </main-master-page>
 </template>
 
 <script>
