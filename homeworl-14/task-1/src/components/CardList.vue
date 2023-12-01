@@ -1,7 +1,6 @@
 <template>
   <div class="list">
     <div class="list__container">
-      <h1 class="list__title">{{ listTitle }}</h1>
       <div class="list__cards">
         <card-item v-for="item in itemsList" :key="item.id" :card-data="item">
           <div v-if="item.icons" class="card__icons">
@@ -27,10 +26,6 @@ export default {
       type: Array,
       required: true
     },
-    listTitle: {
-      type: String,
-      required: true
-    }
   },
 }
 </script>
