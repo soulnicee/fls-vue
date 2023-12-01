@@ -1,7 +1,7 @@
 export const vendorsList = [
   {
     id:1,
-    imageSrc: 'https://content.rozetka.com.ua/goods/images/big/295701523.jpg',
+    imageSrc: 'https://img.freepik.com/premium-vector/a-logo-that-says-macaroni-on-it_187482-1383.jpg?w=740',
     title: 'Політ',
     icons: [
       {
@@ -16,7 +16,7 @@ export const vendorsList = [
   },
   {
     id:2,
-    imageSrc: 'https://content.rozetka.com.ua/goods/images/big/295701523.jpg',
+    imageSrc: 'https://img.freepik.com/premium-vector/sausage-special-vintage-logo_92741-306.jpg?w=740',
     title: 'Надійність',
     icons: [
       {
@@ -27,7 +27,7 @@ export const vendorsList = [
   },
   {
     id:3,
-    imageSrc: 'https://content.rozetka.com.ua/goods/images/big/289064226.jpg',
+    imageSrc: 'https://img.freepik.com/premium-vector/bread-logo-template-design_157713-495.jpg?w=740',
     title: 'Швидка',
     icons: [
       {
@@ -42,7 +42,7 @@ export const vendorsList = [
   },
   {
     id:4,
-    imageSrc: 'https://content2.rozetka.com.ua/goods/images/big/163285436.jpg',
+    imageSrc: 'https://img.freepik.com/premium-vector/cheese-logo-round-linear-logo-of-cheese-store-luxury-logo-design-template-vector-illustration_279597-492.jpg?w=740',
     title: 'Економ',
     icons: [
       {
