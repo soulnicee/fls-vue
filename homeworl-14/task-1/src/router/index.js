@@ -12,6 +12,20 @@ const routes = [
     name: "products",
     component: () =>
       import(/* webpackChunkName: "products" */ "@/views/ProductsView.vue"),
+    children: [
+      {
+        path: "/selector",
+        name: "selector",
+        component: () =>
+            import(/* webpackChunkName: "selector" */ "@/views/SelectorView.vue"),
+      },
+      {
+        path: "/editor",
+        name: "editor",
+        component: () =>
+            import(/* webpackChunkName: "editor" */ "@/views/EditorView.vue"),
+      },
+    ]
   },
   {
     path: "/vendors",
@@ -23,13 +37,13 @@ const routes = [
     path: "/contacts",
     name: "contacts",
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/ContactsView.vue"),
+      import(/* webpackChunkName: "contacts" */ "@/views/ContactsView.vue"),
   },
   {
     path: "/shopping-rules",
     name: "shopping-rules",
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/RulesView.vue"),
+      import(/* webpackChunkName: "shopping-rules" */ "@/views/RulesView.vue"),
   },
 ];
 
