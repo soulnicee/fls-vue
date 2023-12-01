@@ -19,18 +19,18 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "vendors" */ "@/views/VendorsView.vue"),
   },
-  // {
-  //   path: "/contacts",
-  //   name: "contacts",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "@/views/ContactsView.vue"),
-  // },
-  // {
-  //   path: "/shopping-rules",
-  //   name: "shopping-rules",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "@/views/RulesView.vue"),
-  // },
+  {
+    path: "/contacts",
+    name: "contacts",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "@/views/ContactsView.vue"),
+  },
+  {
+    path: "/shopping-rules",
+    name: "shopping-rules",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "@/views/RulesView.vue"),
+  },
 ];
 
 const router = createRouter({

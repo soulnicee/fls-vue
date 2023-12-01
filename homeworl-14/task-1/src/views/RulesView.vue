@@ -1,16 +1,12 @@
 <template>
-  <div class="home">
+  <div>
   </div>
 </template>
 
 <script>
-
-
-
-
 export default {
-  name: "HomeView",
-  components: {
-  },
-};
+  name: 'RulesView'
+}
 </script>
+
+<style lang="scss" scoped></style>
