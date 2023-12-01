@@ -6,11 +6,11 @@ export const vendorsList = [
     icons: [
       {
         id: 1,
-        iconSrc: 'https://cdn-icons-png.flaticon.com/512/0/614.png',
+        iconSrc: ['fas', 'plane'],
       },
       {
         id: 2,
-        iconSrc: 'https://cdn-icons-png.flaticon.com/512/3202/3202926.png',
+        iconSrc: ['fas', 'car-side'],
       }
     ]
   },
@@ -21,7 +21,7 @@ export const vendorsList = [
     icons: [
       {
         id: 1,
-        iconSrc: 'https://cdn-icons-png.flaticon.com/512/3202/3202926.png',
+        iconSrc: ['fas', 'car-side'],
       }
     ]
   },
@@ -32,11 +32,11 @@ export const vendorsList = [
     icons: [
       {
         id: 1,
-        iconSrc: 'https://cdn-icons-png.flaticon.com/512/0/614.png',
+        iconSrc: ['fas', 'plane'],
       },
       {
         id: 2,
-        iconSrc: 'https://cdn-icons-png.flaticon.com/512/3202/3202926.png',
+        iconSrc: ['fas', 'car-side'],
       }
     ]
   },
@@ -47,11 +47,11 @@ export const vendorsList = [
     icons: [
       {
         id: 1,
-        iconSrc: 'https://cdn-icons-png.flaticon.com/512/3202/3202926.png',
+        iconSrc: ['fas', 'car-side'],
       },
       {
         id: 2,
-        iconSrc: 'https://cdn-icons-png.flaticon.com/512/2038/2038854.png',
+        iconSrc: ['fas', 'cart-shopping'],
       }
     ]
   }

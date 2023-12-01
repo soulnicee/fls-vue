@@ -6,7 +6,7 @@
         <card-item v-for="item in itemsList" :key="item.id" :card-data="item">
           <div v-if="item.icons" class="card__icons">
             <div v-for="icon in item.icons" :key="icon.id" class="card__icon">
-              <img :src="icon.iconSrc">
+              <font-awesome-icon :icon="icon.iconSrc" fade />
             </div>
           </div>
         </card-item>
